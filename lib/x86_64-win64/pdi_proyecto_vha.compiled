@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <Compiler Value="E:\PROGRAMAS\lazarus\fpc\3.0.4\bin\x86_64-win64\fpc.exe" Date="1317892579"/>
+  <Params Value=" -MObjFPC -Scghi -O1 -g -gl -WG -l -vewnhibq -FiD:\Documentos\Universidad\Verano2019\procesamiento_digital_imagenes\proyecto\lib\x86_64-win64 -FuE:\PROGRAMAS\lazarus\lcl\units\x86_64-win64\win32 -FuE:\PROGRAMAS\lazarus\lcl\units\x86_64-win64 -FuE:\PROGRAMAS\lazarus\components\lazutils\lib\x86_64-win64 -FuE:\PROGRAMAS\lazarus\packager\units\x86_64-win64 -FuD:\Documentos\Universidad\Verano2019\procesamiento_digital_imagenes\proyecto\ -FUD:\Documentos\Universidad\Verano2019\procesamiento_digital_imagenes\proyecto\lib\x86_64-win64\ -FED:\Documentos\Universidad\Verano2019\procesamiento_digital_imagenes\proyecto\ -oD:\Documentos\Universidad\Verano2019\procesamiento_digital_imagenes\proyecto\pdi_proyecto_vha.exe -dLCL -dLCLwin32 pdi_proyecto_vha.lpr"/>
+</CONFIG>
