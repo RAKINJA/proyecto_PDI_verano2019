@@ -7,7 +7,7 @@ uses
   cthreads,
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, codigo_pdi_proyecto_vha
+  Forms, codigo_pdi_proyecto_vha, metodos_proyecto_pid_vha
   { you can add units after this };
 
 {$R *.res}

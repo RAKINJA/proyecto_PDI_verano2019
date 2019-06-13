@@ -1,11 +1,10 @@
 object formulario_principal: Tformulario_principal
-  Left = 1082
-  Height = 500
-  Top = 299
+  Left = 1036
+  Height = 497
+  Top = 234
   Width = 800
-  BorderStyle = bsSizeToolWin
   Caption = 'formulario_principal'
-  ClientHeight = 480
+  ClientHeight = 477
   ClientWidth = 800
   Color = 4276545
   Menu = menu_principal
@@ -13,26 +12,40 @@ object formulario_principal: Tformulario_principal
   LCLVersion = '2.0.2.0'
   object cuadro_scroll: TScrollBox
     Left = 6
-    Height = 30
+    Height = 50
     Top = 6
-    Width = 32
-    HorzScrollBar.Page = 28
-    VertScrollBar.Page = 26
-    BorderSpacing.CellAlignHorizontal = ccaLeftTop
-    BorderSpacing.CellAlignVertical = ccaRightBottom
-    ClientHeight = 26
-    ClientWidth = 28
+    Width = 66
+    HorzScrollBar.Page = 40
+    VertScrollBar.Page = 40
+    ClientHeight = 46
+    ClientWidth = 62
     TabOrder = 0
     object grafico: TImage
-      Left = 0
-      Height = 26
-      Top = 0
-      Width = 28
+      Left = 8
+      Height = 32
+      Top = 8
+      Width = 32
+      AutoSize = True
+      Enabled = False
     end
+  end
+  object barra_estado: TStatusBar
+    Left = 0
+    Height = 23
+    Top = 454
+    Width = 800
+    Panels = <    
+      item
+        Width = 50
+      end    
+      item
+        Width = 50
+      end>
+    SimplePanel = False
   end
   object menu_principal: TMainMenu
     left = 32
-    top = 424
+    top = 400
     object MenuItem1: TMenuItem
       Caption = 'Archivo'
       object opcion_abrir_imagen: TMenuItem
@@ -43,6 +56,19 @@ object formulario_principal: Tformulario_principal
         Caption = 'Guardar como Imagen'
       end
     end
+    object MenuItem2: TMenuItem
+      Caption = 'Edición'
+      object MenuItem3: TMenuItem
+        Caption = 'Deshacer'
+      end
+      object MenuItem4: TMenuItem
+        Caption = 'Rehacer'
+      end
+      object MenuItem5: TMenuItem
+        Caption = 'Mostrar Original'
+        OnClick = MenuItem5Click
+      end
+    end
     object menu_filtros: TMenuItem
       Caption = 'Filtros'
       object opcion_negativo: TMenuItem
@@ -51,11 +77,27 @@ object formulario_principal: Tformulario_principal
       end
       object opcion_grises: TMenuItem
         Caption = 'Escala de Grises'
+        object opcion_grises_global: TMenuItem
+          Caption = 'Global'
+          OnClick = opcion_grises_globalClick
+        end
+        object opcion_grises_r: TMenuItem
+          Caption = 'R'
+          OnClick = opcion_grises_rClick
+        end
+        object opcion_grises_g: TMenuItem
+          Caption = 'G'
+          OnClick = opcion_grises_gClick
+        end
+        object opcion_grises_b: TMenuItem
+          Caption = 'B'
+          OnClick = opcion_grises_bClick
+        end
       end
     end
   end
   object abrir_imagen: TOpenPictureDialog
-    left = 122
-    top = 424
+    left = 128
+    top = 400
   end
 end
