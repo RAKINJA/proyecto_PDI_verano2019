@@ -1,0 +1,41 @@
+object formulario_histograma: Tformulario_histograma
+  Left = 744
+  Height = 200
+  Top = 378
+  Width = 350
+  Caption = 'Histograma'
+  ClientHeight = 200
+  ClientWidth = 350
+  OnCreate = FormCreate
+  LCLVersion = '2.0.2.0'
+  object grafico_histograma: TImage
+    Left = 8
+    Height = 58
+    Top = 32
+    Width = 82
+  end
+  object titulo_histograma: TLabel
+    Left = 80
+    Height = 15
+    Top = 8
+    Width = 157
+    Caption = 'HISTOGRAMA DE LA IMAGEN'
+    ParentColor = False
+  end
+  object valor_minimo: TLabel
+    Left = 8
+    Height = 15
+    Top = 168
+    Width = 6
+    Caption = '0'
+    ParentColor = False
+  end
+  object valor_maximo: TLabel
+    Left = 320
+    Height = 15
+    Top = 168
+    Width = 18
+    Caption = '255'
+    ParentColor = False
+  end
+end

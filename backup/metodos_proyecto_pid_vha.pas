@@ -35,7 +35,7 @@ begin
 			end;
 		end;
 	end;
-end;
+end; // fin_filtro_negativo
 
 procedure filtro_grises_global(alto,ancho : Integer; var matriz: matrizRGB);
 var
@@ -55,11 +55,10 @@ begin
             matriz[i,j,2] := resultado;
 		end;
 	end;
-end;
+end; // fin filtro_grises_global
 
 procedure filtro_grises_r(alto,ancho : Integer; var matriz: matrizRGB);
-begin
-	var
+var
     i,j : Integer;
     k   : Byte;
 begin
@@ -71,7 +70,7 @@ begin
 			end;
 		end;
 	end;
-end;
+end; // fin filtro_grises_r
 
 procedure filtro_grises_g(alto,ancho : Integer; var matriz: matrizRGB);
 var
@@ -86,7 +85,7 @@ begin
 			end;
     	end;
 	end;
-end;
+end; // fin_filtro_grises_g
 
 procedure filtro_grises_b(alto,ancho : Integer; var matriz: matrizRGB);
 var
@@ -101,7 +100,7 @@ begin
 			end;
 		end;
 	end;
-end;
+end; // fin_filtro_grises_b
 
 end.
 

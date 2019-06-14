@@ -1,0 +1,122 @@
+object formulario_umbral: Tformulario_umbral
+  Left = 686
+  Height = 300
+  Top = 328
+  Width = 584
+  Caption = 'Umbral'
+  ClientHeight = 300
+  ClientWidth = 584
+  OnCreate = FormCreate
+  OnShow = FormShow
+  LCLVersion = '2.0.2.0'
+  object apertura_umbral: TTrackBar
+    Left = 8
+    Height = 25
+    Top = 208
+    Width = 568
+    Frequency = 5
+    Max = 255
+    OnChange = apertura_umbralChange
+    PageSize = 5
+    Position = 0
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 0
+  end
+  object ventana_umbral_titulo: TLabel
+    Left = 232
+    Height = 15
+    Top = 8
+    Width = 124
+    Caption = 'APERTURA DE UMBRAL'
+    ParentColor = False
+  end
+  object StaticText1: TStaticText
+    Left = 16
+    Height = 17
+    Top = 240
+    Width = 12
+    Caption = '0'
+    TabOrder = 1
+  end
+  object StaticText2: TStaticText
+    Left = 552
+    Height = 17
+    Top = 240
+    Width = 24
+    Caption = '255'
+    TabOrder = 2
+  end
+  object scroll_umbral: TScrollBox
+    Left = 16
+    Height = 162
+    Top = 32
+    Width = 550
+    HorzScrollBar.Page = 128
+    VertScrollBar.Page = 64
+    ClientHeight = 158
+    ClientWidth = 546
+    TabOrder = 3
+    object grafico_umbral: TImage
+      Left = 8
+      Height = 56
+      Top = 8
+      Width = 120
+      AutoSize = True
+    end
+  end
+  object boton_ok: TBitBtn
+    Left = 328
+    Height = 30
+    Top = 248
+    Width = 75
+    Caption = 'Aplicar'
+    ModalResult = 1
+    TabOrder = 4
+  end
+  object boton_ok1: TBitBtn
+    Left = 448
+    Height = 30
+    Top = 248
+    Width = 75
+    Caption = 'Cancelar'
+    ModalResult = 2
+    TabOrder = 5
+  end
+  object boton_color1: TColorButton
+    Left = 112
+    Height = 25
+    Top = 253
+    Width = 26
+    BorderWidth = 2
+    ButtonColorSize = 16
+    ButtonColor = clBlack
+    OnColorChanged = boton_color1ColorChanged
+  end
+  object boton_color2: TColorButton
+    Left = 232
+    Height = 25
+    Top = 253
+    Width = 26
+    BorderWidth = 2
+    ButtonColorSize = 16
+    ButtonColor = clBlack
+    OnColorChanged = boton_color2ColorChanged
+  end
+  object color1_text: TLabel
+    Left = 64
+    Height = 15
+    Top = 256
+    Width = 38
+    Caption = 'Color 1'
+    ParentColor = False
+  end
+  object color2_text: TLabel
+    Left = 184
+    Height = 15
+    Top = 256
+    Width = 38
+    Caption = 'Color 2'
+    ParentColor = False
+  end
+end

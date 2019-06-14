@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Menus, ExtCtrls, stdCtrls,
-  ExtDlgs, LCLintf, ComCtrls,metodos_proyecto_pid_vha;
+  ExtDlgs, LCLintf, ComCtrls, funciones_control, metodos_proyecto_pid_vha, ventana_histograma,ventana_umbral;
 
 type
 
@@ -16,11 +16,14 @@ type
 
   Tformulario_principal = class(TForm)
     grafico: TImage;
-    MenuItem1: TMenuItem;
-	MenuItem2: TMenuItem;
-	MenuItem3: TMenuItem;
-	MenuItem4: TMenuItem;
-	MenuItem5: TMenuItem;
+    menu_archivo: TMenuItem;
+	menu_edicion: TMenuItem;
+	opcion_deshacer: TMenuItem;
+	opcion_rehacer: TMenuItem;
+	opcion_original: TMenuItem;
+	menu_ventana: TMenuItem;
+	opcion_histograma: TMenuItem;
+	opcion_umbral: TMenuItem;
     opcion_abrir_imagen: TMenuItem;
 	opcion_grises_b: TMenuItem;
 	opcion_grises_g: TMenuItem;
@@ -36,7 +39,9 @@ type
 	barra_estado: TStatusBar;
 
     procedure FormCreate(Sender: TObject);
-	procedure MenuItem5Click(Sender: TObject);
+	procedure opcion_originalClick(Sender: TObject);
+	procedure opcion_histogramaClick(Sender: TObject);
+	procedure opcion_umbralClick(Sender: TObject);
     procedure opcion_abrir_imagenClick(Sender: TObject);
 	procedure opcion_grises_bClick(Sender: TObject);
 	procedure opcion_grises_gClick(Sender: TObject);
@@ -48,16 +53,12 @@ type
 
   public
 
-	procedure cpCanvtoMatriz(alto,ancho:Integer; var Matriz:matrizRGB);
-	procedure cpMatriztoCanv(alto,ancho:Integer);
 
-	procedure cpBMtoMatriz(alto, ancho:Integer ; var Matriz:matrizRGB; bmp:TBitmap);
-	procedure cpMatriztoBM(alto, ancho:Integer ; Matriz:matrizRGB; var bmp:TBitmap);
 
   end;
 
 var
-  formulario_principal: Tformulario_principal;
+	formulario_principal: Tformulario_principal;
 
 	// VARIABLES
 	bitmap,bitmap_original:Tbitmap;
@@ -78,21 +79,28 @@ begin
     bitmap := TBitmap.Create; // creacion del objeto de tipo Bitmap
 
     barra_estado.Panels[0].Width:=200;
+
+    // inhabilita los menus
+    menu_edicion.Enabled:=false;
+    menu_filtros.Enabled:=false;
+    menu_ventana.Enabled:=false;
 end;
 
-procedure Tformulario_principal.MenuItem5Click(Sender: TObject);
+procedure Tformulario_principal.opcion_originalClick(Sender: TObject);
 begin
-	cpBMtoMatriz(alto_img,ancho_img,matRGB,bitmap_original);
-    cpMatriztoCanv(alto_img,ancho_img);
+	//cpBMtoMatriz(alto_img,ancho_img,matRGB,bitmap_original);
+    //cpMatriztoCanv(alto_img,ancho_img);
 end;
+
+
 
 procedure Tformulario_principal.opcion_abrir_imagenClick(Sender: TObject);
 begin
 	if abrir_imagen.Execute then begin
 		grafico.Enabled:=True; // habilitar el TImage
+        barra_estado.Panels[0].Text:='Cargando Imagen. Por favor Espere';
 
         bitmap.LoadFromFile(abrir_imagen.FileName); // cargar imagen
-
 
         if bitmap.PixelFormat<> Pf24bit then //si no es de 8 bits por canal
     	begin
@@ -111,33 +119,72 @@ begin
 		SetLength(matRGB,alto_img,ancho_img,3); // Reserva el espacio para la matrizRGB
 
 		cpBMtoMatriz(alto_img,ancho_img,matRGB,bitmap); // llama a la funcion para asignar los datos del bitmap a la matriz
-        //grafico.Picture.Assign(bitmap); // Asigna el contenido del bitmap a Canvas del TImage
-        cpMatriztoCanv(alto_img,ancho_img);
+        cpMatriztoCanv(alto_img,ancho_img,matRGB,grafico);
 
-        //bitmap_original.Assign(grafico.Picture); // carga la imagen al bitmap de respaldo original que guarda la imagen original
+        barra_estado.Panels[0].Text:='Imagen Cargada';
+
+        menu_edicion.Enabled:=true;
+    	menu_filtros.Enabled:=true;
+	    menu_ventana.Enabled:=true;
     end;
 end;
 
+procedure Tformulario_principal.opcion_histogramaClick(Sender: TObject);
+begin
+    formulario_histograma.show;
+end;
+
+procedure Tformulario_principal.opcion_umbralClick(Sender: TObject);
+var
+	promedio : Integer;
+begin
+    cpCanvtoMatriz(alto_img,ancho_img,matRGB,grafico);
+    filtro_grises_global(alto_img,ancho_img,matRGB);
+
+    formulario_umbral.grafico_umbral.Height:=bitmap.Height;
+    formulario_umbral.grafico_umbral.Width:=bitmap.Width;
+
+    cpMatriztoCanv(alto_img,ancho_img,matRGB,formulario_umbral.grafico_umbral);
+
+    promedio := formulario_umbral.umbral_promedio(alto_img,ancho_img,matRGB);
+    promedio_umbral := promedio;
+
+
+
+    formulario_umbral.showModal;
+    if formulario_umbral.boton_ok.ModalResult = MrOk then begin
+
+	end;
+end;
+
+{
+		OPCIONES DE FILTROS
+}
+
 procedure Tformulario_principal.opcion_grises_globalClick(Sender: TObject);
 begin
-	cpCanvtoMatriz(alto_img,ancho_img,matRGB); // Cargar la informacion de la Imagen en el Bitmap
+    barra_estado.Panels[0].Text:='Aplicando Efecto. Por favor Espere';
+
+	cpCanvtoMatriz(alto_img,ancho_img,matRGB,grafico); // Cargar la informacion de la Imagen en el Bitmap
 
     filtro_grises_global(alto_img,ancho_img,matRGB);
 
     cpMatriztoBM(alto_img,ancho_img,matRGB,bitmap); // Carga la matriz al Bitmap
-    cpMatriztoCanv(alto_img,ancho_img);
+    cpMatriztoCanv(alto_img,ancho_img,matRGB,grafico);
+
+    barra_estado.Panels[0].Text:='Efecto Aplicado';
 end;
 
 procedure Tformulario_principal.opcion_grises_rClick(Sender: TObject);
 begin
     barra_estado.Panels[0].Text:='Aplicando Efecto. Por favor Espere';
 
-	cpCanvtoMatriz(alto_img,ancho_img,matRGB); // Cargar la informacion de la Imagen en el Bitmap
+	cpCanvtoMatriz(alto_img,ancho_img,matRGB,grafico); // Cargar la informacion de la Imagen en el Bitmap
 
     filtro_grises_r(alto_img,ancho_img,matRGB);
 
     cpMatriztoBM(alto_img,ancho_img,matRGB,bitmap); // Carga la matriz al Bitmap
-    cpMatriztoCanv(alto_img,ancho_img);
+    cpMatriztoCanv(alto_img,ancho_img,matRGB,grafico);
 
     barra_estado.Panels[0].Text:='Efecto Aplicado';
 end;
@@ -146,118 +193,43 @@ procedure Tformulario_principal.opcion_grises_gClick(Sender: TObject);
 begin
     barra_estado.Panels[0].Text:='Aplicando Efecto. Por favor Espere';
 
-	cpCanvtoMatriz(alto_img,ancho_img,matRGB); // Cargar la informacion de la Imagen en el Bitmap
+    cpCanvtoMatriz(alto_img,ancho_img,matRGB,grafico); // Cargar la informacion de la Imagen en el Bitmap
 
     filtro_grises_g(alto_img,ancho_img,matRGB);
 
     cpMatriztoBM(alto_img,ancho_img,matRGB,bitmap); // Carga la matriz al Bitmap
-    cpMatriztoCanv(alto_img,ancho_img);
+    cpMatriztoCanv(alto_img,ancho_img,matRGB,grafico);
 
-    barra_estado.Panels[0].Text:='Efecto Aplicado';
+    barra_estado.Panels[0].Text:='Efecto Aplicado - ';
 end;
 
 procedure Tformulario_principal.opcion_grises_bClick(Sender: TObject);
 begin
     barra_estado.Panels[0].Text:='Aplicando Efecto. Por favor Espere';
 
-	cpCanvtoMatriz(alto_img,ancho_img,matRGB); // Cargar la informacion de la Imagen en el Bitmap
+	cpCanvtoMatriz(alto_img,ancho_img,matRGB,grafico); // Cargar la informacion de la Imagen en el Bitmap
 
     filtro_grises_b(alto_img,ancho_img,matRGB);
 
     cpMatriztoBM(alto_img,ancho_img,matRGB,bitmap); // Carga la matriz al Bitmap
-    cpMatriztoCanv(alto_img,ancho_img);
+    cpMatriztoCanv(alto_img,ancho_img,matRGB,grafico);
 
     barra_estado.Panels[0].Text:='Efecto Aplicado';
 end;
 
 procedure Tformulario_principal.opcion_negativoClick(Sender: TObject);
 begin
-    barra_estado.Panels[0].Width:=200;
     barra_estado.Panels[0].Text:='Aplicando Efecto. Por favor Espere';
 
-	cpCanvtoMatriz(alto_img,ancho_img,matRGB); // Cargar la informacion de la Imagen en el Bitmap
+	cpCanvtoMatriz(alto_img,ancho_img,matRGB,grafico); // Cargar la informacion de la Imagen en el Bitmap
 
     filtro_negativo(alto_img,ancho_img,matRGB);
 
     cpMatriztoBM(alto_img,ancho_img,matRGB,bitmap); // Carga la matriz al Bitmap
-    cpMatriztoCanv(alto_img,ancho_img);
+    cpMatriztoCanv(alto_img,ancho_img,matRGB,grafico);
 
     barra_estado.Panels[0].Text:='Efecto Aplicado';
 end;
-
-procedure Tformulario_principal.cpCanvtoMatriz(alto,ancho:Integer; var Matriz:matrizRGB);
-var
-    i,j : Integer;
-    cl  : TColor;
-begin
-    ShowMessage('Copiar Canvas -> Matriz');
-	for i:=0 to alto-1 do begin
-        for j:=0 to ancho-1 do begin
-
-            cl            := grafico.Canvas.Pixels[j,i];
-			Matriz[i,j,0] := GetRValue(cl); // Valor del Canal R
-            Matriz[i,j,1] := GetGValue(cl); // Valor del Canal G
-            Matriz[i,j,2] := GetBValue(cl); // Valor del Canal B
-            {ShowMessage('i= '+IntToStr(i)+' | j= '+IntToStr(j));
-            ShowMessage('Rojo= '+IntToStr(Matriz[i,j,0])+'| Verde= '+IntToStr(Matriz[i,j,1])+' | Azul= '+IntToStr(Matriz[i,j,2]));}
-		end;
-	end;
-end;
-
-procedure Tformulario_principal.cpMatriztoCanv(alto,ancho:Integer);
-var
-    i,j : Integer;
-    cl  : TColor;
-begin
-    ShowMessage('Copiar Matriz -> Canvas');
-	for i:=0 to alto-1 do begin
-        for j:=0 to ancho-1 do begin
-        	cl := RGB(matRGB[i,j,0],matRGB[i,j,1],matRGB[i,j,2]);
-            grafico.Canvas.Pixels[j,i]:=cl;
-		end;
-	end;
-end;
-
-procedure Tformulario_principal.cpBMtoMatriz(alto, ancho:Integer ; var Matriz:matrizRGB; bmp:TBitmap);
-var
-	i,j,k    : Integer;
-	pArrByte : PByte;
-begin
-    ShowMessage('Copiar Bitmap -> Matriz');
-	for i:=0 to alto-1 do begin // recorre las filas
-		bmp.BeginUpdate;
-        	pArrByte := bmp.ScanLine[i]; // obtiene la posicion de memoria del primer elemento de la matriz
-		bmp.EndUpdate;                   // cada elemento, al ser un arreglo de 3 dimensiones, contiene el arreglo de los valores RGB
-
-		for j:=0 to ancho-1 do begin // recorre las columnas
-			k := 3*j;
-			Matriz[i,j,0] := pArrByte[k+2];
-			Matriz[i,j,1] := pArrByte[k+1];
-			Matriz[i,j,2] := pArrByte[k];
-            //ShowMessage('Rojo= '+IntToStr(Matriz[i,j,0])+'| Verde= '+IntToStr(Matriz[i,j,1])+' | Azul= '+IntToStr(Matriz[i,j,2]));
-        end;
-    end;
-end; // Fin copia Bitmap -> Matriz
-
-procedure Tformulario_principal.cpMatriztoBM(alto, ancho:Integer; Matriz:matrizRGB; var bmp:TBitmap);
-var
-    i,j,k      : Integer;
-    pArrayByte : PByte;
-begin
-    ShowMessage('Copiar Matriz -> Bitmap');
-    for i:=0 to alto-1 do begin
-        bmp.BeginUpdate;
-        	pArrayByte := bmp.ScanLine[i];
-        bmp.EndUpdate;
-
-        for j:=0 to ancho-1 do begin
-			k := 3*j;
-            pArrayByte[k]   := Matriz[i,j,0];
-            pArrayByte[k+1] := Matriz[i,j,1];
-            pArrayByte[k+2] := Matriz[i,j,2];
-		end;
-	end;
-end; // fin copia Matriz -> Bitmap
 
 end.
 

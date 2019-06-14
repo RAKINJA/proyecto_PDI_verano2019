@@ -1,7 +1,7 @@
 object formulario_principal: Tformulario_principal
-  Left = 1036
+  Left = 630
   Height = 497
-  Top = 234
+  Top = 356
   Width = 800
   Caption = 'formulario_principal'
   ClientHeight = 477
@@ -12,18 +12,18 @@ object formulario_principal: Tformulario_principal
   LCLVersion = '2.0.2.0'
   object cuadro_scroll: TScrollBox
     Left = 6
-    Height = 50
+    Height = 76
     Top = 6
-    Width = 66
-    HorzScrollBar.Page = 40
-    VertScrollBar.Page = 40
-    ClientHeight = 46
-    ClientWidth = 62
+    Width = 114
+    HorzScrollBar.Page = 32
+    VertScrollBar.Page = 32
+    ClientHeight = 72
+    ClientWidth = 110
     TabOrder = 0
     object grafico: TImage
-      Left = 8
+      Left = 0
       Height = 32
-      Top = 8
+      Top = 0
       Width = 32
       AutoSize = True
       Enabled = False
@@ -46,7 +46,7 @@ object formulario_principal: Tformulario_principal
   object menu_principal: TMainMenu
     left = 32
     top = 400
-    object MenuItem1: TMenuItem
+    object menu_archivo: TMenuItem
       Caption = 'Archivo'
       object opcion_abrir_imagen: TMenuItem
         Caption = 'Abrir Imagen'
@@ -56,17 +56,17 @@ object formulario_principal: Tformulario_principal
         Caption = 'Guardar como Imagen'
       end
     end
-    object MenuItem2: TMenuItem
+    object menu_edicion: TMenuItem
       Caption = 'Edición'
-      object MenuItem3: TMenuItem
+      object opcion_deshacer: TMenuItem
         Caption = 'Deshacer'
       end
-      object MenuItem4: TMenuItem
+      object opcion_rehacer: TMenuItem
         Caption = 'Rehacer'
       end
-      object MenuItem5: TMenuItem
+      object opcion_original: TMenuItem
         Caption = 'Mostrar Original'
-        OnClick = MenuItem5Click
+        OnClick = opcion_originalClick
       end
     end
     object menu_filtros: TMenuItem
@@ -93,6 +93,17 @@ object formulario_principal: Tformulario_principal
           Caption = 'B'
           OnClick = opcion_grises_bClick
         end
+      end
+      object opcion_umbral: TMenuItem
+        Caption = 'Umbral'
+        OnClick = opcion_umbralClick
+      end
+    end
+    object menu_ventana: TMenuItem
+      Caption = 'Ventana'
+      object opcion_histograma: TMenuItem
+        Caption = 'Histograma'
+        OnClick = opcion_histogramaClick
       end
     end
   end
