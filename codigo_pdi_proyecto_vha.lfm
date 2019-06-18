@@ -1,7 +1,7 @@
 object formulario_principal: Tformulario_principal
-  Left = 630
+  Left = 750
   Height = 497
-  Top = 356
+  Top = 298
   Width = 800
   Caption = 'formulario_principal'
   ClientHeight = 477
@@ -97,6 +97,10 @@ object formulario_principal: Tformulario_principal
       object opcion_umbral: TMenuItem
         Caption = 'Umbral'
         OnClick = opcion_umbralClick
+      end
+      object opcion_gamma: TMenuItem
+        Caption = 'Correcion Gamma'
+        OnClick = opcion_gammaClick
       end
     end
     object menu_ventana: TMenuItem

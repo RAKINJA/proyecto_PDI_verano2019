@@ -16,6 +16,7 @@ type
 
   Tformulario_principal = class(TForm)
     grafico: TImage;
+	opcion_gamma: TMenuItem;
     menu_archivo: TMenuItem;
 	menu_edicion: TMenuItem;
 	opcion_deshacer: TMenuItem;
@@ -39,6 +40,7 @@ type
 	barra_estado: TStatusBar;
 
     procedure FormCreate(Sender: TObject);
+	procedure opcion_gammaClick(Sender: TObject);
 	procedure opcion_originalClick(Sender: TObject);
 	procedure opcion_histogramaClick(Sender: TObject);
 	procedure opcion_umbralClick(Sender: TObject);
@@ -147,7 +149,8 @@ begin
     cpMatriztoCanv(alto_img,ancho_img,matRGB,formulario_umbral.grafico_umbral);
 
     promedio := formulario_umbral.umbral_promedio(alto_img,ancho_img,matRGB);
-    promedio_umbral := promedio;
+    ShowMessage('PROMEDIO EXTERNO = '+IntToStr(promedio));
+    formulario_umbral.promedio_umbral := promedio;
 
 
 
@@ -224,6 +227,19 @@ begin
 	cpCanvtoMatriz(alto_img,ancho_img,matRGB,grafico); // Cargar la informacion de la Imagen en el Bitmap
 
     filtro_negativo(alto_img,ancho_img,matRGB);
+
+    cpMatriztoBM(alto_img,ancho_img,matRGB,bitmap); // Carga la matriz al Bitmap
+    cpMatriztoCanv(alto_img,ancho_img,matRGB,grafico);
+
+    barra_estado.Panels[0].Text:='Efecto Aplicado';
+end;
+
+procedure Tformulario_principal.opcion_gammaClick(Sender: TObject);
+begin
+    barra_estado.Panels[0].Text:='Aplicando Efecto. Por favor Espere';
+    cpCanvtoMatriz(alto_img,ancho_img,matRGB,grafico); // Cargar la informacion de la Imagen en el Bitmap
+
+	filtro_correcion_gamma(alto_img,ancho_img,matRGB);
 
     cpMatriztoBM(alto_img,ancho_img,matRGB,bitmap); // Carga la matriz al Bitmap
     cpMatriztoCanv(alto_img,ancho_img,matRGB,grafico);

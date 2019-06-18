@@ -98,6 +98,10 @@ object formulario_principal: Tformulario_principal
         Caption = 'Umbral'
         OnClick = opcion_umbralClick
       end
+      object opcion_gamma: TMenuItem
+        Caption = 'Correcion Gamma'
+        OnClick = opcion_gammaClick
+      end
     end
     object menu_ventana: TMenuItem
       Caption = 'Ventana'

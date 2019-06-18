@@ -19,6 +19,7 @@ object formulario_umbral: Tformulario_umbral
     OnChange = apertura_umbralChange
     PageSize = 5
     Position = 0
+    OnMouseUp = apertura_umbralMouseUp
     ParentShowHint = False
     ShowHint = True
     TabOrder = 0
@@ -49,12 +50,12 @@ object formulario_umbral: Tformulario_umbral
   end
   object scroll_umbral: TScrollBox
     Left = 16
-    Height = 162
-    Top = 32
+    Height = 146
+    Top = 48
     Width = 550
     HorzScrollBar.Page = 128
     VertScrollBar.Page = 64
-    ClientHeight = 158
+    ClientHeight = 142
     ClientWidth = 546
     TabOrder = 3
     object grafico_umbral: TImage
@@ -117,6 +118,13 @@ object formulario_umbral: Tformulario_umbral
     Top = 256
     Width = 38
     Caption = 'Color 2'
+    ParentColor = False
+  end
+  object valor_umbral_tag: TLabel
+    Left = 272
+    Height = 1
+    Top = 24
+    Width = 1
     ParentColor = False
   end
 end

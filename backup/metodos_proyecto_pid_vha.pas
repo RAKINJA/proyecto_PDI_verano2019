@@ -5,7 +5,7 @@ unit metodos_proyecto_pid_vha;
 interface
 
 uses
-		Classes, SysUtils, Dialogs;
+		Classes, SysUtils, Dialogs,Math;
 type
   	// variables
   	matrizRGB = Array of Array of Array of Byte; // Matriz de MxN para cada canal R,G,B
@@ -17,6 +17,8 @@ type
     procedure filtro_grises_r(alto,ancho : Integer; var matriz: matrizRGB);
     procedure filtro_grises_g(alto,ancho : Integer; var matriz: matrizRGB);
     procedure filtro_grises_b(alto,ancho : Integer; var matriz: matrizRGB);
+
+    procedure filtro_correcion_gamma(alto,ancho:Integer; var matriz: matrizRGB);
 
     // funciones
 
@@ -35,7 +37,7 @@ begin
 			end;
 		end;
 	end;
-end; // fin_filtro_negativo
+end; // fin filtro_negativo
 
 procedure filtro_grises_global(alto,ancho : Integer; var matriz: matrizRGB);
 var
@@ -85,7 +87,7 @@ begin
 			end;
     	end;
 	end;
-end; // fin_filtro_grises_g
+end; // fin filtro_grises_g
 
 procedure filtro_grises_b(alto,ancho : Integer; var matriz: matrizRGB);
 var
@@ -100,7 +102,25 @@ begin
 			end;
 		end;
 	end;
-end; // fin_filtro_grises_b
+end; // fin filtro_grises_b
+
+procedure filtro_correcion_gamma(alto,ancho:Integer; var matriz: matrizRGB);
+var
+    i,j   :Integer;
+    gamma : Double;
+    k  	  : Byte;
+begin
+    gamma := 0.1;
+	for i:=0 to alto-1 do begin
+        for j:= 0 to ancho-1 do begin
+            for k:=0 to 2 do begin
+                //ShowMessage(IntToStr(matriz[i,j,k]));
+                matriz[i,j,k] := trunc(power(matriz[i,j,k]/255,gamma)*255);
+			end;
+		end;
+	end;
+
+end;
 
 end.
 

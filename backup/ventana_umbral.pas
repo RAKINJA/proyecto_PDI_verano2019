@@ -23,12 +23,15 @@ type
 		grafico_umbral: TImage;
 		color1_text: TLabel;
 		color2_text: TLabel;
+		valor_umbral_tag: TLabel;
 		scroll_umbral: TScrollBox;
 		StaticText1: TStaticText;
 		StaticText2: TStaticText;
 		ventana_umbral_titulo: TLabel;
 		apertura_umbral: TTrackBar;
    		procedure apertura_umbralChange(Sender: TObject);
+		procedure apertura_umbralMouseUp(Sender: TObject; Button: TMouseButton;
+				Shift: TShiftState; X, Y: Integer);
 		procedure boton_color1ColorChanged(Sender: TObject);
 		procedure boton_color2ColorChanged(Sender: TObject);
 		procedure FormCreate(Sender: TObject);
@@ -37,6 +40,9 @@ type
     	private
 
 		public
+
+        promedio_umbral : Integer;
+
     	procedure actualizar_grafico(nuevo_bitmap:TBitmap);
         procedure filtro_umbral(ancho,alto:Integer; matriz:matrizRGB);
 
@@ -46,9 +52,8 @@ type
 var
 	formulario_umbral: Tformulario_umbral;
 
-
     alto_img,ancho_img : Integer;
-    promedio_umbral : Integer;
+
     valor_umbral : Integer;
     matriz_umbral : Array of Array of Array of Byte;
 
@@ -78,8 +83,7 @@ begin
 
     //ShowMessage(IntToStr(alto_img));
     //ShowMessage(IntToStr(ancho_img));
-    ShowMessage(IntToStr(promedio_umbral));
-    valor_umbral := promedio_umbral;
+    ShowMessage('El valor del promedio del umbral es: '+IntToStr(promedio_umbral));
 
     SetLength(matriz_umbral,alto_img,ancho_img,3);
 
@@ -89,8 +93,15 @@ end;
 procedure Tformulario_umbral.apertura_umbralChange(Sender: TObject);
 begin
 	valor_umbral := apertura_umbral.Position;
+    valor_umbral_tag.Caption:=IntToStr(valor_umbral);
+end;
+
+procedure Tformulario_umbral.apertura_umbralMouseUp(Sender: TObject;
+		Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+	ShowMessage('Se levanto el mouse');
     filtro_umbral(alto_img,ancho_img,matriz_umbral);
-    cpMatriztoCanv();
+    cpMatriztoCanv(alto_img,ancho_img,matriz_umbral,grafico_umbral);
 end;
 
 procedure Tformulario_umbral.boton_color1ColorChanged(Sender: TObject);
@@ -122,6 +133,8 @@ begin
 	end;
 
     promedio_umbral := promedio_umbral div total_pxls;
+
+    umbral_promedio := promedio_umbral;
 end;
 
 procedure Tformulario_umbral.filtro_umbral(ancho,alto:Integer; matriz:matrizRGB);
@@ -129,16 +142,22 @@ var
     i,j : Integer;
     k   : Byte;
 begin
+    valor_umbral := promedio_umbral;
+    ShowMessage('Valor Umbral = '+IntToStr(valor_umbral));
+    k := 180;
+    ShowMessage('Valor Umbral = '+IntToStr(k));
     for i:=0 to alto-1 do begin
         for j:=0 to ancho-1 do begin
-            if matriz[i,j,0] >= valor_umbral then begin
-            	matriz[i,j,0] := GetRvalue(cl1);
+            //ShowMessage('Valor Umbral = '+IntToStr(matriz[i,j,0]));
+            if (matriz[i,j,0]>k) then begin
+
+            	{matriz[i,j,0] := GetRvalue(cl1);
                 matriz[i,j,1] := GetGvalue(cl1);
-                matriz[i,j,2] := GetBvalue(cl1);
+                matriz[i,j,2] := GetBvalue(cl1);}
 			end else begin
-            	matriz[i,j,0] := GetRvalue(cl2);
+            	{matriz[i,j,0] := GetRvalue(cl2);
                 matriz[i,j,1] := GetGvalue(cl2);
-                matriz[i,j,2] := GetBvalue(cl2);
+                matriz[i,j,2] := GetBvalue(cl2);}
 			end;
 		end;
 	end;
