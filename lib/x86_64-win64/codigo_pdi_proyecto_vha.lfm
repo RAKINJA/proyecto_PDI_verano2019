@@ -1,7 +1,7 @@
 object formulario_principal: Tformulario_principal
-  Left = 630
+  Left = 750
   Height = 497
-  Top = 356
+  Top = 298
   Width = 800
   Caption = 'formulario_principal'
   ClientHeight = 477

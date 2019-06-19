@@ -149,10 +149,7 @@ begin
     cpMatriztoCanv(alto_img,ancho_img,matRGB,formulario_umbral.grafico_umbral);
 
     promedio := formulario_umbral.umbral_promedio(alto_img,ancho_img,matRGB);
-    ShowMessage('PROMEDIO EXTERNO = '+IntToStr(promedio));
     formulario_umbral.promedio_umbral := promedio;
-
-
 
     formulario_umbral.showModal;
     if formulario_umbral.boton_ok.ModalResult = MrOk then begin
