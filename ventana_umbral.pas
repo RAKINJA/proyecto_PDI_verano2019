@@ -42,6 +42,7 @@ type
 		public
 
         promedio_umbral : Integer;
+        imagen_original : TBitmap;
 
     	procedure actualizar_grafico(nuevo_bitmap:TBitmap);
         procedure filtro_umbral(alto,ancho:Integer; matriz:matrizRGB);
@@ -56,8 +57,6 @@ var
     valor_umbral  : Integer;
 
     matriz_umbral   : matrizRGB;
-    imagen_original : TBitmap;
-
     cl1, cl2 : TColor;
 
 
@@ -71,8 +70,10 @@ begin
 	cl1 := Clblack;
     cl2 := Clwhite;
 
-    boton_color1.Color := cl1;
-    boton_color2.Color := cl2;
+    boton_color1.ButtonColor := cl1;
+    boton_color2.ButtonColor := cl2;
+
+    imagen_original := TBitmap.Create;
 end;
 
 procedure Tformulario_umbral.FormShow(Sender: TObject);
@@ -81,12 +82,15 @@ begin
     ancho_img := grafico_umbral.canvas.Width;
 
     apertura_umbral.Position := promedio_umbral;
-    valor_umbral := promedio_umbral;
+    valor_umbral 			 := promedio_umbral;
 
-    SetLength(matriz_umbral,alto_img,ancho_img,3);
+    SetLength(matriz_umbral,alto_img,ancho_img,3); // Asigna el tamaño a la Matriz
 
     cpCanvtoMatriz(alto_img,ancho_img,matriz_umbral,grafico_umbral);
-    //cpMatriztoBM(alto_img,ancho_img,matriz_umbral,imagen_original);
+    imagen_original.Assign(grafico_umbral.Picture.Graphic);
+
+    //boton_color1.Color := cl1;
+    //boton_color2.Color := cl2;
 end;
 
 procedure Tformulario_umbral.apertura_umbralChange(Sender: TObject);
@@ -98,19 +102,20 @@ end;
 procedure Tformulario_umbral.apertura_umbralMouseUp(Sender: TObject;
 		Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
-	//cpBMtoMatriz(alto_img,ancho_img,matriz_umbral,imagen_original);
+	cpBMtoMatriz(alto_img,ancho_img,matriz_umbral,imagen_original);
     filtro_umbral(alto_img,ancho_img,matriz_umbral);
     cpMatriztoCanv(alto_img,ancho_img,matriz_umbral,grafico_umbral);
+    //grafico_umbral.Picture.Assign(imagen_original);
 end;
 
 procedure Tformulario_umbral.boton_color1ColorChanged(Sender: TObject);
 begin
-	cl1 := boton_color1.Color;
+	cl1 := boton_color1.ButtonColor;
 end;
 
 procedure Tformulario_umbral.boton_color2ColorChanged(Sender: TObject);
 begin
-	cl2 := boton_color2.Color;
+	cl2 := boton_color2.ButtonColor;
 end;
 
 procedure Tformulario_umbral.actualizar_grafico(nuevo_bitmap: TBitmap);
@@ -143,12 +148,18 @@ var
 begin
     for i:=0 to alto-1 do begin
         for j:=0 to ancho-1 do begin
-            if (matriz[i,j,0]<valor_umbral) then begin
 
+            if (matriz[i,j,0]<=valor_umbral) then begin
+            	ShowMessage('Iteracion : '+IntToStr(matriz[i,j,0]));
+                ShowMessage('Iteracion : '+IntToStr(matriz[i,j,1]));
+                ShowMessage('Iteracion : '+IntToStr(matriz[i,j,2]));
             	matriz[i,j,0] := GetRvalue(cl1);
                 matriz[i,j,1] := GetGvalue(cl1);
                 matriz[i,j,2] := GetBvalue(cl1);
 			end else begin
+                ShowMessage('Iteracion : '+IntToStr(matriz[i,j,0]));
+                ShowMessage('Iteracion : '+IntToStr(matriz[i,j,1]));
+                ShowMessage('Iteracion : '+IntToStr(matriz[i,j,2]));
             	matriz[i,j,0] := GetRvalue(cl2);
                 matriz[i,j,1] := GetGvalue(cl2);
                 matriz[i,j,2] := GetBvalue(cl2);

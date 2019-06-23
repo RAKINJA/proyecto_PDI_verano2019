@@ -1,17 +1,17 @@
 object formulario_umbral: Tformulario_umbral
   Left = 686
-  Height = 300
+  Height = 309
   Top = 328
   Width = 584
   Caption = 'Umbral'
-  ClientHeight = 300
+  ClientHeight = 309
   ClientWidth = 584
   OnCreate = FormCreate
   OnShow = FormShow
-  LCLVersion = '2.0.2.0'
+  LCLVersion = '1.6.2.0'
   object apertura_umbral: TTrackBar
     Left = 8
-    Height = 25
+    Height = 46
     Top = 208
     Width = 568
     Frequency = 5
@@ -28,22 +28,22 @@ object formulario_umbral: Tformulario_umbral
     Left = 232
     Height = 15
     Top = 8
-    Width = 124
+    Width = 148
     Caption = 'APERTURA DE UMBRAL'
     ParentColor = False
   end
   object StaticText1: TStaticText
     Left = 16
     Height = 17
-    Top = 240
+    Top = 248
     Width = 12
     Caption = '0'
     TabOrder = 1
   end
   object StaticText2: TStaticText
-    Left = 552
+    Left = 544
     Height = 17
-    Top = 240
+    Top = 248
     Width = 24
     Caption = '255'
     TabOrder = 2
@@ -55,8 +55,8 @@ object formulario_umbral: Tformulario_umbral
     Width = 550
     HorzScrollBar.Page = 128
     VertScrollBar.Page = 64
-    ClientHeight = 142
-    ClientWidth = 546
+    ClientHeight = 144
+    ClientWidth = 548
     TabOrder = 3
     object grafico_umbral: TImage
       Left = 8
@@ -69,7 +69,7 @@ object formulario_umbral: Tformulario_umbral
   object boton_ok: TBitBtn
     Left = 328
     Height = 30
-    Top = 248
+    Top = 264
     Width = 75
     Caption = 'Aplicar'
     ModalResult = 1
@@ -78,7 +78,7 @@ object formulario_umbral: Tformulario_umbral
   object boton_ok1: TBitBtn
     Left = 448
     Height = 30
-    Top = 248
+    Top = 264
     Width = 75
     Caption = 'Cancelar'
     ModalResult = 2
@@ -87,7 +87,7 @@ object formulario_umbral: Tformulario_umbral
   object boton_color1: TColorButton
     Left = 112
     Height = 25
-    Top = 253
+    Top = 269
     Width = 26
     BorderWidth = 2
     ButtonColorSize = 16
@@ -97,7 +97,7 @@ object formulario_umbral: Tformulario_umbral
   object boton_color2: TColorButton
     Left = 232
     Height = 25
-    Top = 253
+    Top = 269
     Width = 26
     BorderWidth = 2
     ButtonColorSize = 16
@@ -107,16 +107,16 @@ object formulario_umbral: Tformulario_umbral
   object color1_text: TLabel
     Left = 64
     Height = 15
-    Top = 256
-    Width = 38
+    Top = 272
+    Width = 46
     Caption = 'Color 1'
     ParentColor = False
   end
   object color2_text: TLabel
     Left = 184
     Height = 15
-    Top = 256
-    Width = 38
+    Top = 272
+    Width = 46
     Caption = 'Color 2'
     ParentColor = False
   end

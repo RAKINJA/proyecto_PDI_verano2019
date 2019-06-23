@@ -6,7 +6,8 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Menus, ExtCtrls, stdCtrls,
-  ExtDlgs, LCLintf, ComCtrls, funciones_control, metodos_proyecto_pid_vha, ventana_histograma,ventana_umbral;
+  ExtDlgs, LCLintf, ComCtrls, funciones_control, metodos_proyecto_pid_vha, ventana_histograma,
+  ventana_umbral;
 
 type
 
@@ -63,9 +64,9 @@ var
 	formulario_principal: Tformulario_principal;
 
 	// VARIABLES
-	bitmap,bitmap_original:Tbitmap;
-	matRGB : matrizRGB;
-	alto_img, ancho_img : Integer; // alto y ancho de la imagen
+	bitmap,bitmap_original		: Tbitmap;
+	matRGB          			: matrizRGB;
+	alto_img, ancho_img, avance : Integer; // alto y ancho de la imagen
 
 implementation
 
@@ -86,6 +87,7 @@ begin
     menu_edicion.Enabled:=false;
     menu_filtros.Enabled:=false;
     menu_ventana.Enabled:=false;
+    opcion_guardar_imagen.Enabled:=false;
 end;
 
 procedure Tformulario_principal.opcion_originalClick(Sender: TObject);
@@ -109,25 +111,21 @@ begin
        		bitmap.PixelFormat:=Pf24bit;
     	end;
 
-        ShowMessage(IntToStr(bitmap.Height));
-        ShowMessage(IntToStr(bitmap.Width));
-
         alto_img := bitmap.Height; ancho_img := bitmap.Width; // Se actualiza el alto y ancho del bitmap conforme a la imagen
         grafico.Height := alto_img; grafico.Width := ancho_img; // Se actualiza el alto y ancho del Canvas conforme a la imagen
-
-        ShowMessage(IntToStr(grafico.Height));
-        ShowMessage(IntToStr(grafico.Width));
-
 		SetLength(matRGB,alto_img,ancho_img,3); // Reserva el espacio para la matrizRGB
 
 		cpBMtoMatriz(alto_img,ancho_img,matRGB,bitmap); // llama a la funcion para asignar los datos del bitmap a la matriz
-        cpMatriztoCanv(alto_img,ancho_img,matRGB,grafico);
+        //cpMatriztoCanv(alto_img,ancho_img,matRGB,grafico);
+        grafico.Picture.Assign(bitmap);
 
+        metodos_proyecto_pid_vha.avance:=(alto_img*ancho_img) div 100;
         barra_estado.Panels[0].Text:='Imagen Cargada';
 
         menu_edicion.Enabled:=true;
     	menu_filtros.Enabled:=true;
 	    menu_ventana.Enabled:=true;
+        opcion_guardar_imagen.Enabled:=true;
     end;
 end;
 
@@ -140,11 +138,10 @@ procedure Tformulario_principal.opcion_umbralClick(Sender: TObject);
 var
 	promedio : Integer;
 begin
-    cpCanvtoMatriz(alto_img,ancho_img,matRGB,grafico);
     filtro_grises_global(alto_img,ancho_img,matRGB);
 
-    formulario_umbral.grafico_umbral.Height:=bitmap.Height;
-    formulario_umbral.grafico_umbral.Width:=bitmap.Width;
+    formulario_umbral.grafico_umbral.Height:= bitmap.Height;
+    formulario_umbral.grafico_umbral.Width := bitmap.Width;
 
     cpMatriztoCanv(alto_img,ancho_img,matRGB,formulario_umbral.grafico_umbral);
 
@@ -153,7 +150,9 @@ begin
 
     formulario_umbral.showModal;
     if formulario_umbral.boton_ok.ModalResult = MrOk then begin
-
+    	cpCanvtoMatriz(alto_img,ancho_img,matRGB,formulario_umbral.grafico_umbral);
+        cpMatriztoBM(alto_img,ancho_img,matRGB,bitmap);
+        grafico.Picture.Assign(bitmap);
 	end;
 end;
 
@@ -220,8 +219,6 @@ end;
 procedure Tformulario_principal.opcion_negativoClick(Sender: TObject);
 begin
     barra_estado.Panels[0].Text:='Aplicando Efecto. Por favor Espere';
-
-	cpCanvtoMatriz(alto_img,ancho_img,matRGB,grafico); // Cargar la informacion de la Imagen en el Bitmap
 
     filtro_negativo(alto_img,ancho_img,matRGB);
 

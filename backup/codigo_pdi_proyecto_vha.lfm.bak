@@ -1,0 +1,118 @@
+object formulario_principal: Tformulario_principal
+  Left = 1084
+  Height = 497
+  Top = 482
+  Width = 800
+  Caption = 'formulario_principal'
+  ClientHeight = 472
+  ClientWidth = 800
+  Color = 15987699
+  Menu = menu_principal
+  OnCreate = FormCreate
+  LCLVersion = '1.6.2.0'
+  object cuadro_scroll: TScrollBox
+    Left = 6
+    Height = 76
+    Top = 6
+    Width = 114
+    HorzScrollBar.Page = 32
+    VertScrollBar.Page = 32
+    ClientHeight = 74
+    ClientWidth = 112
+    TabOrder = 0
+    object grafico: TImage
+      Left = 0
+      Height = 32
+      Top = 0
+      Width = 32
+      AutoSize = True
+      Enabled = False
+    end
+  end
+  object barra_estado: TStatusBar
+    Left = 0
+    Height = 19
+    Top = 453
+    Width = 800
+    Panels = <    
+      item
+        Width = 50
+      end    
+      item
+        Width = 50
+      end>
+    SimplePanel = False
+  end
+  object menu_principal: TMainMenu
+    left = 32
+    top = 400
+    object menu_archivo: TMenuItem
+      Caption = 'Archivo'
+      object opcion_abrir_imagen: TMenuItem
+        Caption = 'Abrir Imagen'
+        OnClick = opcion_abrir_imagenClick
+      end
+      object opcion_guardar_imagen: TMenuItem
+        Caption = 'Guardar como Imagen'
+      end
+    end
+    object menu_edicion: TMenuItem
+      Caption = 'Edición'
+      object opcion_deshacer: TMenuItem
+        Caption = 'Deshacer'
+      end
+      object opcion_rehacer: TMenuItem
+        Caption = 'Rehacer'
+      end
+      object opcion_original: TMenuItem
+        Caption = 'Mostrar Original'
+        OnClick = opcion_originalClick
+      end
+    end
+    object menu_filtros: TMenuItem
+      Caption = 'Filtros'
+      object opcion_negativo: TMenuItem
+        Caption = 'Negativo'
+        OnClick = opcion_negativoClick
+      end
+      object opcion_grises: TMenuItem
+        Caption = 'Escala de Grises'
+        object opcion_grises_global: TMenuItem
+          Caption = 'Global'
+          OnClick = opcion_grises_globalClick
+        end
+        object opcion_grises_r: TMenuItem
+          Caption = 'R'
+          OnClick = opcion_grises_rClick
+        end
+        object opcion_grises_g: TMenuItem
+          Caption = 'G'
+          OnClick = opcion_grises_gClick
+        end
+        object opcion_grises_b: TMenuItem
+          Caption = 'B'
+          OnClick = opcion_grises_bClick
+        end
+      end
+      object opcion_umbral: TMenuItem
+        Caption = 'Umbral'
+        OnClick = opcion_umbralClick
+      end
+      object opcion_gamma: TMenuItem
+        Caption = 'Correcion Gamma'
+        OnClick = opcion_gammaClick
+      end
+    end
+    object menu_ventana: TMenuItem
+      Caption = 'Ventana'
+      object opcion_histograma: TMenuItem
+        Caption = 'Histograma'
+        OnClick = opcion_histogramaClick
+      end
+    end
+  end
+  object abrir_imagen: TOpenPictureDialog
+    left = 128
+    top = 400
+  end
+end

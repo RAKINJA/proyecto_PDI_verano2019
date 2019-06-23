@@ -19,6 +19,8 @@ type
     procedure filtro_grises_b(alto,ancho : Integer; var matriz: matrizRGB);
 
     procedure filtro_correcion_gamma(alto,ancho:Integer; var matriz: matrizRGB);
+var
+    avance, contador_avance, progreso : Integer;
 
     // funciones
 
@@ -33,10 +35,11 @@ begin
     for i:=0 to alto-1 do begin
         for j:=0 to ancho-1 do begin
             for k:=0 to 2 do begin
+
             	matriz[i,j,k] := 255-matriz[i,j,k]; // Resta de los canales RGB
-			end;
-		end;
-	end;
+			end; // end for k
+		end; // end for j
+	end; // end for i
 end; // fin filtro_negativo
 
 procedure filtro_grises_global(alto,ancho : Integer; var matriz: matrizRGB);

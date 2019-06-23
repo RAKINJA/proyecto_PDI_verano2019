@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <PathDelim Value="\"/>
+    <Version Value="9"/>
+    <BuildModes Active="Default"/>
+    <Units Count="11">
+      <Unit0>
+        <Filename Value="pdi_proyecto_vha.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="24" Y="11"/>
+        <UsageCount Value="102"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="codigo_pdi_proyecto_vha.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="formulario_principal"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="213"/>
+        <CursorPos X="41" Y="230"/>
+        <UsageCount Value="102"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="metodos_proyecto_pid_vha.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="4"/>
+        <CursorPos X="40" Y="8"/>
+        <UsageCount Value="77"/>
+        <Loaded Value="True"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="ventana_histograma.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="formulario_histograma"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="3"/>
+        <CursorPos X="47" Y="34"/>
+        <UsageCount Value="62"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="ventana_umbral.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="formulario_umbral"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="135"/>
+        <CursorPos X="57" Y="156"/>
+        <UsageCount Value="62"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="funciones_control.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="1"/>
+        <CursorPos X="39" Y="93"/>
+        <UsageCount Value="53"/>
+        <Loaded Value="True"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="E:\PROGRAMAS\lazarus\lcl\include\rasterimage.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="281"/>
+        <CursorPos Y="299"/>
+        <UsageCount Value="8"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="E:\PROGRAMAS\lazarus\lcl\include\customform.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="2308"/>
+        <CursorPos Y="2326"/>
+        <UsageCount Value="6"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="E:\PROGRAMAS\lazarus\lcl\include\control.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="4244"/>
+        <CursorPos X="40" Y="4261"/>
+        <UsageCount Value="6"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="ventana_progreso.pas"/>
+        <ComponentName Value="formulario_progreso"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="12"/>
+        <CursorPos X="42" Y="34"/>
+        <UsageCount Value="24"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="..\..\..\..\..\..\..\usr\lib\lazarus\1.6.2\lcl\include\rasterimage.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="121"/>
+        <CursorPos Y="139"/>
+        <UsageCount Value="10"/>
+      </Unit10>
+    </Units>
+    <JumpHistory Count="30" HistoryIndex="29">
+      <Position1>
+        <Filename Value="codigo_pdi_proyecto_vha.pas"/>
+        <Caret Line="143" Column="5" TopLine="126"/>
+      </Position1>
+      <Position2>
+        <Filename Value="codigo_pdi_proyecto_vha.pas"/>
+        <Caret Line="171" Column="32" TopLine="161"/>
+      </Position2>
+      <Position3>
+        <Filename Value="codigo_pdi_proyecto_vha.pas"/>
+        <Caret Line="144" Column="53" TopLine="130"/>
+      </Position3>
+      <Position4>
+        <Filename Value="ventana_umbral.pas"/>
+        <Caret Line="138" Column="30" TopLine="104"/>
+      </Position4>
+      <Position5>
+        <Filename Value="ventana_umbral.pas"/>
+        <Caret Line="124" Column="5" TopLine="108"/>
+      </Position5>
+      <Position6>
+        <Filename Value="codigo_pdi_proyecto_vha.pas"/>
+        <Caret Line="107" Column="54" TopLine="93"/>
+      </Position6>
+      <Position7>
+        <Filename Value="codigo_pdi_proyecto_vha.pas"/>
+        <Caret Line="225" Column="5" TopLine="211"/>
+      </Position7>
+      <Position8>
+        <Filename Value="metodos_proyecto_pid_vha.pas"/>
+        <Caret Line="42" Column="10" TopLine="20"/>
+      </Position8>
+      <Position9>
+        <Filename Value="metodos_proyecto_pid_vha.pas"/>
+        <Caret Line="15" Column="18" TopLine="11"/>
+      </Position9>
+      <Position10>
+        <Filename Value="metodos_proyecto_pid_vha.pas"/>
+        <Caret Line="42" Column="70" TopLine="26"/>
+      </Position10>
+      <Position11>
+        <Filename Value="metodos_proyecto_pid_vha.pas"/>
+        <Caret Line="47" Column="38" TopLine="26"/>
+      </Position11>
+      <Position12>
+        <Filename Value="codigo_pdi_proyecto_vha.pas"/>
+        <Caret Line="103" Column="49" TopLine="100"/>
+      </Position12>
+      <Position13>
+        <Filename Value="codigo_pdi_proyecto_vha.pas"/>
+        <Caret Line="109" Column="89" TopLine="97"/>
+      </Position13>
+      <Position14>
+        <Filename Value="metodos_proyecto_pid_vha.pas"/>
+        <Caret Line="46" Column="19" TopLine="32"/>
+      </Position14>
+      <Position15>
+        <Filename Value="codigo_pdi_proyecto_vha.pas"/>
+        <Caret Line="223" Column="42" TopLine="211"/>
+      </Position15>
+      <Position16>
+        <Filename Value="codigo_pdi_proyecto_vha.pas"/>
+        <Caret Line="108" TopLine="100"/>
+      </Position16>
+      <Position17>
+        <Filename Value="codigo_pdi_proyecto_vha.pas"/>
+        <Caret Line="144" Column="77" TopLine="122"/>
+      </Position17>
+      <Position18>
+        <Filename Value="codigo_pdi_proyecto_vha.pas"/>
+        <Caret Line="145" Column="37" TopLine="129"/>
+      </Position18>
+      <Position19>
+        <Filename Value="ventana_umbral.pas"/>
+        <Caret Line="76" Column="39" TopLine="49"/>
+      </Position19>
+      <Position20>
+        <Filename Value="codigo_pdi_proyecto_vha.pas"/>
+        <Caret Line="144" Column="72" TopLine="126"/>
+      </Position20>
+      <Position21>
+        <Filename Value="codigo_pdi_proyecto_vha.pas"/>
+        <Caret Line="138" Column="49" TopLine="126"/>
+      </Position21>
+      <Position22>
+        <Filename Value="codigo_pdi_proyecto_vha.pas"/>
+        <Caret Line="173" Column="91" TopLine="160"/>
+      </Position22>
+      <Position23>
+        <Filename Value="ventana_umbral.pas"/>
+        <Caret Line="90" Column="58" TopLine="61"/>
+      </Position23>
+      <Position24>
+        <Filename Value="codigo_pdi_proyecto_vha.pas"/>
+        <Caret Line="136" Column="44" TopLine="119"/>
+      </Position24>
+      <Position25>
+        <Filename Value="codigo_pdi_proyecto_vha.pas"/>
+        <Caret Line="115" Column="37" TopLine="98"/>
+      </Position25>
+      <Position26>
+        <Filename Value="codigo_pdi_proyecto_vha.pas"/>
+        <Caret Line="155" Column="31" TopLine="123"/>
+      </Position26>
+      <Position27>
+        <Filename Value="ventana_umbral.pas"/>
+        <Caret Line="130" Column="92" TopLine="112"/>
+      </Position27>
+      <Position28>
+        <Filename Value="ventana_umbral.pas"/>
+        <Caret Line="87" Column="84" TopLine="75"/>
+      </Position28>
+      <Position29>
+        <Filename Value="codigo_pdi_proyecto_vha.pas"/>
+        <Caret Line="224" Column="39" TopLine="184"/>
+      </Position29>
+      <Position30>
+        <Filename Value="ventana_umbral.pas"/>
+        <Caret Line="151" Column="40" TopLine="135"/>
+      </Position30>
+    </JumpHistory>
+  </ProjectSession>
+</CONFIG>
