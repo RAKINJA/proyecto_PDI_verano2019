@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CONFIG>
   <ProjectOptions>
-    <Version Value="9"/>
+    <Version Value="11"/>
     <PathDelim Value="\"/>
     <General>
       <SessionStorage Value="InProjectDir"/>
       <MainUnit Value="0"/>
       <Title Value="Proyecto PDI - VHA"/>
+      <Scaled Value="True"/>
       <ResourceType Value="res"/>
       <UseXPManifest Value="True"/>
       <XPManifest>
@@ -19,18 +20,18 @@
     </BuildModes>
     <PublishOptions>
       <Version Value="2"/>
+      <UseFileFilters Value="True"/>
     </PublishOptions>
     <RunParams>
-      <local>
-        <FormatVersion Value="1"/>
-      </local>
+      <FormatVersion Value="2"/>
+      <Modes Count="0"/>
     </RunParams>
     <RequiredPackages Count="1">
       <Item1>
         <PackageName Value="LCL"/>
       </Item1>
     </RequiredPackages>
-    <Units Count="6">
+    <Units Count="8">
       <Unit0>
         <Filename Value="pdi_proyecto_vha.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -54,16 +55,28 @@
         <ResourceBaseClass Value="Form"/>
       </Unit3>
       <Unit4>
+        <Filename Value="funciones_control.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit4>
+      <Unit5>
         <Filename Value="ventana_umbral.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="formulario_umbral"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-      </Unit4>
-      <Unit5>
-        <Filename Value="funciones_control.pas"/>
-        <IsPartOfProject Value="True"/>
       </Unit5>
+      <Unit6>
+        <Filename Value="ventana_gamma.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="formulario_gamma"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="ventana_contraste.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="formulario_contraste"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit7>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

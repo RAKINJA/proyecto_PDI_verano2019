@@ -2,15 +2,15 @@
 <CONFIG>
   <ProjectSession>
     <PathDelim Value="\"/>
-    <Version Value="9"/>
+    <Version Value="11"/>
     <BuildModes Active="Default"/>
-    <Units Count="11">
+    <Units Count="14">
       <Unit0>
         <Filename Value="pdi_proyecto_vha.lpr"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <CursorPos X="24" Y="11"/>
-        <UsageCount Value="102"/>
+        <CursorPos Y="25"/>
+        <UsageCount Value="201"/>
       </Unit0>
       <Unit1>
         <Filename Value="codigo_pdi_proyecto_vha.pas"/>
@@ -18,18 +18,19 @@
         <ComponentName Value="formulario_principal"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <TopLine Value="213"/>
-        <CursorPos X="88" Y="213"/>
-        <UsageCount Value="102"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="330"/>
+        <CursorPos X="7" Y="342"/>
+        <UsageCount Value="201"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
       <Unit2>
         <Filename Value="metodos_proyecto_pid_vha.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="6"/>
         <CursorPos X="40" Y="8"/>
-        <UsageCount Value="77"/>
+        <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit2>
       <Unit3>
@@ -39,193 +40,225 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="11"/>
-        <CursorPos X="47" Y="34"/>
-        <UsageCount Value="62"/>
+        <TopLine Value="148"/>
+        <CursorPos X="39" Y="152"/>
+        <ComponentState Value="1"/>
+        <UsageCount Value="196"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit3>
       <Unit4>
+        <Filename Value="funciones_control.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="57"/>
+        <CursorPos X="33" Y="95"/>
+        <UsageCount Value="187"/>
+        <Loaded Value="True"/>
+      </Unit4>
+      <Unit5>
         <Filename Value="ventana_umbral.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="formulario_umbral"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="2"/>
-        <TopLine Value="135"/>
-        <CursorPos X="6" Y="155"/>
-        <UsageCount Value="62"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="27"/>
+        <CursorPos X="41" Y="38"/>
+        <UsageCount Value="69"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
-      </Unit4>
-      <Unit5>
-        <Filename Value="funciones_control.pas"/>
-        <IsPartOfProject Value="True"/>
-        <EditorIndex Value="1"/>
-        <CursorPos X="39" Y="93"/>
-        <UsageCount Value="53"/>
-        <Loaded Value="True"/>
       </Unit5>
       <Unit6>
         <Filename Value="E:\PROGRAMAS\lazarus\lcl\include\rasterimage.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="281"/>
         <CursorPos Y="299"/>
-        <UsageCount Value="8"/>
+        <UsageCount Value="5"/>
       </Unit6>
       <Unit7>
         <Filename Value="E:\PROGRAMAS\lazarus\lcl\include\customform.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="2308"/>
         <CursorPos Y="2326"/>
-        <UsageCount Value="6"/>
+        <UsageCount Value="3"/>
       </Unit7>
       <Unit8>
         <Filename Value="E:\PROGRAMAS\lazarus\lcl\include\control.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="4244"/>
         <CursorPos X="40" Y="4261"/>
-        <UsageCount Value="6"/>
+        <UsageCount Value="3"/>
       </Unit8>
       <Unit9>
-        <Filename Value="ventana_progreso.pas"/>
-        <ComponentName Value="formulario_progreso"/>
-        <ResourceBaseClass Value="Form"/>
+        <Filename Value="C:\lazarus\lcl\include\rasterimage.inc"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="12"/>
-        <CursorPos X="42" Y="34"/>
-        <UsageCount Value="24"/>
+        <TopLine Value="119"/>
+        <CursorPos Y="139"/>
+        <UsageCount Value="3"/>
       </Unit9>
       <Unit10>
-        <Filename Value="..\..\..\..\..\..\..\usr\lib\lazarus\1.6.2\lcl\include\rasterimage.inc"/>
+        <Filename Value="C:\lazarus\lcl\include\customform.inc"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="121"/>
-        <CursorPos Y="139"/>
-        <UsageCount Value="10"/>
+        <TopLine Value="2936"/>
+        <CursorPos Y="2946"/>
+        <UsageCount Value="5"/>
       </Unit10>
+      <Unit11>
+        <Filename Value="C:\lazarus\lcl\include\fpimagebitmap.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="129"/>
+        <CursorPos Y="141"/>
+        <UsageCount Value="6"/>
+      </Unit11>
+      <Unit12>
+        <Filename Value="ventana_gamma.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="formulario_gamma"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="1"/>
+        <CursorPos X="38" Y="10"/>
+        <UsageCount Value="29"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit12>
+      <Unit13>
+        <Filename Value="ventana_contraste.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="formulario_contraste"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="2"/>
+        <CursorPos X="26" Y="17"/>
+        <UsageCount Value="29"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit13>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="codigo_pdi_proyecto_vha.pas"/>
-        <Caret Line="143" Column="5" TopLine="126"/>
+        <Filename Value="metodos_proyecto_pid_vha.pas"/>
+        <Caret Line="253" Column="32" TopLine="229"/>
       </Position1>
       <Position2>
-        <Filename Value="codigo_pdi_proyecto_vha.pas"/>
-        <Caret Line="171" Column="32" TopLine="161"/>
+        <Filename Value="metodos_proyecto_pid_vha.pas"/>
+        <Caret Line="254" Column="86" TopLine="229"/>
       </Position2>
       <Position3>
-        <Filename Value="codigo_pdi_proyecto_vha.pas"/>
-        <Caret Line="144" Column="53" TopLine="130"/>
+        <Filename Value="metodos_proyecto_pid_vha.pas"/>
+        <Caret Line="241" Column="33" TopLine="229"/>
       </Position3>
       <Position4>
-        <Filename Value="ventana_umbral.pas"/>
-        <Caret Line="138" Column="30" TopLine="104"/>
+        <Filename Value="codigo_pdi_proyecto_vha.pas"/>
+        <Caret Line="306" Column="24" TopLine="290"/>
       </Position4>
       <Position5>
-        <Filename Value="ventana_umbral.pas"/>
-        <Caret Line="124" Column="5" TopLine="108"/>
+        <Filename Value="metodos_proyecto_pid_vha.pas"/>
+        <Caret Line="248" Column="13" TopLine="228"/>
       </Position5>
       <Position6>
         <Filename Value="codigo_pdi_proyecto_vha.pas"/>
-        <Caret Line="107" Column="54" TopLine="93"/>
+        <Caret Line="297" Column="12" TopLine="291"/>
       </Position6>
       <Position7>
-        <Filename Value="codigo_pdi_proyecto_vha.pas"/>
-        <Caret Line="225" Column="5" TopLine="211"/>
+        <Filename Value="ventana_contraste.pas"/>
+        <Caret Line="26" Column="24"/>
       </Position7>
       <Position8>
-        <Filename Value="metodos_proyecto_pid_vha.pas"/>
-        <Caret Line="42" Column="10" TopLine="20"/>
+        <Filename Value="ventana_contraste.pas"/>
+        <Caret Line="18" Column="45"/>
       </Position8>
       <Position9>
-        <Filename Value="metodos_proyecto_pid_vha.pas"/>
-        <Caret Line="15" Column="18" TopLine="11"/>
+        <Filename Value="ventana_contraste.pas"/>
+        <Caret Line="19" Column="45"/>
       </Position9>
       <Position10>
-        <Filename Value="metodos_proyecto_pid_vha.pas"/>
-        <Caret Line="42" Column="70" TopLine="26"/>
+        <Filename Value="ventana_contraste.pas"/>
+        <Caret Line="20" Column="45"/>
       </Position10>
       <Position11>
-        <Filename Value="metodos_proyecto_pid_vha.pas"/>
-        <Caret Line="47" Column="38" TopLine="26"/>
+        <Filename Value="ventana_contraste.pas"/>
+        <Caret Line="21" Column="45"/>
       </Position11>
       <Position12>
-        <Filename Value="codigo_pdi_proyecto_vha.pas"/>
-        <Caret Line="103" Column="49" TopLine="100"/>
+        <Filename Value="ventana_contraste.pas"/>
+        <Caret Line="16" Column="49"/>
       </Position12>
       <Position13>
-        <Filename Value="codigo_pdi_proyecto_vha.pas"/>
-        <Caret Line="109" Column="89" TopLine="97"/>
+        <Filename Value="ventana_contraste.pas"/>
+        <Caret Line="27" Column="32" TopLine="2"/>
       </Position13>
       <Position14>
-        <Filename Value="metodos_proyecto_pid_vha.pas"/>
-        <Caret Line="46" Column="19" TopLine="32"/>
+        <Filename Value="ventana_contraste.pas"/>
+        <Caret Line="45" Column="5" TopLine="10"/>
       </Position14>
       <Position15>
-        <Filename Value="codigo_pdi_proyecto_vha.pas"/>
-        <Caret Line="223" Column="42" TopLine="211"/>
+        <Filename Value="ventana_gamma.pas"/>
+        <Caret Line="25" Column="85"/>
       </Position15>
       <Position16>
-        <Filename Value="codigo_pdi_proyecto_vha.pas"/>
-        <Caret Line="108" TopLine="100"/>
+        <Filename Value="ventana_contraste.pas"/>
+        <Caret Line="65" Column="9" TopLine="33"/>
       </Position16>
       <Position17>
-        <Filename Value="codigo_pdi_proyecto_vha.pas"/>
-        <Caret Line="144" Column="77" TopLine="122"/>
+        <Filename Value="ventana_contraste.pas"/>
+        <Caret Line="15" Column="16"/>
       </Position17>
       <Position18>
-        <Filename Value="codigo_pdi_proyecto_vha.pas"/>
-        <Caret Line="145" Column="37" TopLine="129"/>
+        <Filename Value="ventana_contraste.pas"/>
+        <Caret Line="23" Column="26"/>
       </Position18>
       <Position19>
-        <Filename Value="ventana_umbral.pas"/>
-        <Caret Line="76" Column="39" TopLine="49"/>
+        <Filename Value="ventana_contraste.pas"/>
+        <Caret Line="15" Column="16"/>
       </Position19>
       <Position20>
-        <Filename Value="codigo_pdi_proyecto_vha.pas"/>
-        <Caret Line="144" Column="72" TopLine="126"/>
+        <Filename Value="ventana_gamma.pas"/>
+        <Caret Line="23" Column="26" TopLine="2"/>
       </Position20>
       <Position21>
-        <Filename Value="codigo_pdi_proyecto_vha.pas"/>
-        <Caret Line="138" Column="49" TopLine="126"/>
+        <Filename Value="ventana_gamma.pas"/>
+        <Caret Line="29" Column="35" TopLine="9"/>
       </Position21>
       <Position22>
-        <Filename Value="codigo_pdi_proyecto_vha.pas"/>
-        <Caret Line="173" Column="91" TopLine="160"/>
+        <Filename Value="ventana_umbral.pas"/>
+        <Caret Line="38" Column="35" TopLine="15"/>
       </Position22>
       <Position23>
-        <Filename Value="ventana_umbral.pas"/>
-        <Caret Line="90" Column="58" TopLine="61"/>
+        <Filename Value="metodos_proyecto_pid_vha.pas"/>
+        <Caret Line="8" Column="34"/>
       </Position23>
       <Position24>
-        <Filename Value="codigo_pdi_proyecto_vha.pas"/>
-        <Caret Line="136" Column="44" TopLine="119"/>
+        <Filename Value="ventana_gamma.pas"/>
+        <Caret Line="15" Column="49"/>
       </Position24>
       <Position25>
-        <Filename Value="codigo_pdi_proyecto_vha.pas"/>
-        <Caret Line="115" Column="37" TopLine="98"/>
+        <Filename Value="ventana_gamma.pas"/>
+        <Caret Line="9" Column="29"/>
       </Position25>
       <Position26>
-        <Filename Value="codigo_pdi_proyecto_vha.pas"/>
-        <Caret Line="155" Column="31" TopLine="123"/>
+        <Filename Value="ventana_contraste.pas"/>
+        <Caret Line="29" Column="19" TopLine="10"/>
       </Position26>
       <Position27>
-        <Filename Value="ventana_umbral.pas"/>
-        <Caret Line="130" Column="92" TopLine="112"/>
+        <Filename Value="codigo_pdi_proyecto_vha.pas"/>
+        <Caret Line="49" Column="21" TopLine="41"/>
       </Position27>
       <Position28>
-        <Filename Value="ventana_umbral.pas"/>
-        <Caret Line="87" Column="84" TopLine="75"/>
+        <Filename Value="ventana_contraste.pas"/>
+        <Caret Line="33" Column="25" TopLine="36"/>
       </Position28>
       <Position29>
-        <Filename Value="codigo_pdi_proyecto_vha.pas"/>
-        <Caret Line="224" Column="39" TopLine="184"/>
+        <Filename Value="ventana_contraste.pas"/>
+        <Caret Line="65" Column="6" TopLine="44"/>
       </Position29>
       <Position30>
-        <Filename Value="ventana_umbral.pas"/>
-        <Caret Line="151" Column="40" TopLine="135"/>
+        <Filename Value="ventana_contraste.pas"/>
+        <Caret Line="17" Column="26"/>
       </Position30>
     </JumpHistory>
+    <RunParams>
+      <FormatVersion Value="2"/>
+      <Modes Count="0" ActiveMode=""/>
+    </RunParams>
   </ProjectSession>
 </CONFIG>

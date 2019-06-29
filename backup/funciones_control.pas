@@ -34,7 +34,7 @@ begin
 	for i:=0 to alto-1 do begin
         for j:=0 to ancho-1 do begin
 
-            cl            := grafico.Canvas.Pixels[i,j];
+            cl            := grafico.Canvas.Pixels[j,i];
 			matriz[i,j,0] := GetRValue(cl); // Valor del Canal R
             matriz[i,j,1] := GetGValue(cl); // Valor del Canal G
             matriz[i,j,2] := GetBValue(cl); // Valor del Canal B
@@ -50,8 +50,8 @@ begin
     ShowMessage('Copiar Matriz -> Canvas');
 	for i:=0 to alto-1 do begin
         for j:=0 to ancho-1 do begin
-        	cl := RGB(matriz[i,j,0],matriz[i,j,1],matriz[i,j,2]);
-            image.Canvas.Pixels[j,i]:=cl;
+        	cl 						 := RGB(matriz[i,j,0],matriz[i,j,1],matriz[i,j,2]);
+            image.Canvas.Pixels[j,i] := cl;
 		end;
 	end;
 end;
@@ -69,9 +69,9 @@ begin
 
 		for j:=0 to ancho-1 do begin // recorre las columnas
 			k := 3*j;
-			matriz[i,j,0] := pArrByte[k+2];
+			matriz[i,j,0] := pArrByte[k];
 			matriz[i,j,1] := pArrByte[k+1];
-			matriz[i,j,2] := pArrByte[k];
+			matriz[i,j,2] := pArrByte[k+2];
         end;
     end;
 end; // Fin copia Bitmap -> Matriz

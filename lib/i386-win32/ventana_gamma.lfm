@@ -1,0 +1,71 @@
+object formulario_gamma: Tformulario_gamma
+  Left = 250
+  Height = 250
+  Top = 456
+  Width = 350
+  Caption = 'formulario_gamma'
+  ClientHeight = 250
+  ClientWidth = 350
+  OnCreate = FormCreate
+  LCLVersion = '2.0.2.0'
+  object titulo_gamma: TLabel
+    Left = 96
+    Height = 15
+    Top = 15
+    Width = 115
+    Caption = 'CORRECION GAMMA'
+    ParentColor = False
+  end
+  object valor_gamma: TLabel
+    Left = 218
+    Height = 15
+    Top = 15
+    Width = 6
+    Caption = '0'
+    ParentColor = False
+  end
+  object btn_ok: TBitBtn
+    Left = 80
+    Height = 30
+    Top = 208
+    Width = 75
+    Caption = 'OK'
+    ModalResult = 1
+    TabOrder = 0
+  end
+  object btn_cancelar: TBitBtn
+    Left = 216
+    Height = 30
+    Top = 208
+    Width = 75
+    Caption = 'Cancelar'
+    ModalResult = 2
+    TabOrder = 1
+  end
+  object scroll_gamma: TScrollBox
+    Left = 8
+    Height = 122
+    Top = 38
+    Width = 336
+    HorzScrollBar.Page = 90
+    VertScrollBar.Page = 90
+    ClientHeight = 118
+    ClientWidth = 332
+    TabOrder = 2
+    object grafico_gamma: TImage
+      Left = 0
+      Height = 90
+      Top = 0
+      Width = 90
+    end
+  end
+  object apertura_gamma: TTrackBar
+    Left = 8
+    Height = 25
+    Top = 168
+    Width = 336
+    Max = 20
+    Position = 0
+    TabOrder = 3
+  end
+end

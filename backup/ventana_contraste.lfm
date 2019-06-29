@@ -1,0 +1,72 @@
+object Form1: TForm1
+  Left = 565
+  Height = 300
+  Top = 311
+  Width = 450
+  Caption = 'Contraste'
+  ClientHeight = 300
+  ClientWidth = 450
+  LCLVersion = '2.0.2.0'
+  object apertura_contraste: TTrackBar
+    Left = 64
+    Height = 25
+    Top = 208
+    Width = 336
+    Max = 20
+    OnChange = apertura_contrasteChange
+    Position = 0
+    OnMouseUp = apertura_contrasteMouseUp
+    TabOrder = 0
+  end
+  object btn_ok: TBitBtn
+    Left = 128
+    Height = 30
+    Top = 248
+    Width = 75
+    Caption = 'OK'
+    ModalResult = 1
+    TabOrder = 1
+  end
+  object btn_cancelar: TBitBtn
+    Left = 257
+    Height = 30
+    Top = 248
+    Width = 75
+    Caption = 'Cancelar'
+    ModalResult = 2
+    TabOrder = 2
+  end
+  object scroll_contraste: TScrollBox
+    Left = 8
+    Height = 150
+    Top = 40
+    Width = 432
+    HorzScrollBar.Page = 90
+    VertScrollBar.Page = 90
+    ClientHeight = 146
+    ClientWidth = 428
+    TabOrder = 3
+    object grafico_contraste: TImage
+      Left = 0
+      Height = 90
+      Top = 0
+      Width = 90
+    end
+  end
+  object titulo_contraste: TLabel
+    Left = 136
+    Height = 15
+    Top = 16
+    Width = 121
+    Caption = 'VALOR DE CONTRASTE'
+    ParentColor = False
+  end
+  object valor_contraste: TLabel
+    Left = 272
+    Height = 15
+    Top = 16
+    Width = 6
+    Caption = '0'
+    ParentColor = False
+  end
+end

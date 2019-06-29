@@ -1,12 +1,13 @@
 object formulario_histograma: Tformulario_histograma
-  Left = 744
-  Height = 200
-  Top = 378
-  Width = 350
+  Left = 582
+  Height = 220
+  Top = 297
+  Width = 309
   Caption = 'Histograma'
-  ClientHeight = 200
-  ClientWidth = 350
+  ClientHeight = 220
+  ClientWidth = 309
   OnCreate = FormCreate
+  OnShow = FormShow
   LCLVersion = '2.0.2.0'
   object grafico_histograma: TImage
     Left = 8
@@ -18,7 +19,7 @@ object formulario_histograma: Tformulario_histograma
     Left = 80
     Height = 15
     Top = 8
-    Width = 157
+    Width = 156
     Caption = 'HISTOGRAMA DE LA IMAGEN'
     ParentColor = False
   end
@@ -31,11 +32,47 @@ object formulario_histograma: Tformulario_histograma
     ParentColor = False
   end
   object valor_maximo: TLabel
-    Left = 320
+    Left = 280
     Height = 15
     Top = 168
     Width = 18
     Caption = '255'
     ParentColor = False
+  end
+  object hs_rgb: TRadioButton
+    Left = 64
+    Height = 19
+    Top = 192
+    Width = 42
+    Caption = 'RGB'
+    OnChange = hs_rgbChange
+    TabOrder = 0
+  end
+  object hs_r: TRadioButton
+    Left = 128
+    Height = 19
+    Top = 192
+    Width = 27
+    Caption = 'R'
+    OnChange = hs_rChange
+    TabOrder = 1
+  end
+  object hs_g: TRadioButton
+    Left = 184
+    Height = 19
+    Top = 192
+    Width = 28
+    Caption = 'G'
+    OnChange = hs_gChange
+    TabOrder = 2
+  end
+  object hs_b: TRadioButton
+    Left = 248
+    Height = 19
+    Top = 192
+    Width = 27
+    Caption = 'B'
+    OnChange = hs_bChange
+    TabOrder = 3
   end
 end
