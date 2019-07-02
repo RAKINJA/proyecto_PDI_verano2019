@@ -7,8 +7,8 @@ uses
   cthreads,
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, codigo_pdi_proyecto_vha, metodos_proyecto_pid_vha,
-  ventana_histograma, funciones_control, ventana_umbral, ventana_gamma, ventana_contraste
+  Forms, codigo_pdi_proyecto_vha, metodos_proyecto_pid_vha, ventana_histograma,
+  funciones_control, ventana_umbral, ventana_gamma, ventana_contraste
   { you can add units after this };
 
 {$R *.res}

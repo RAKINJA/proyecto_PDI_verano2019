@@ -1,7 +1,7 @@
 object formulario_principal: Tformulario_principal
-  Left = 242
+  Left = 511
   Height = 497
-  Top = 101
+  Top = 22
   Width = 800
   BorderStyle = bsSingle
   Caption = 'formulario_principal'
@@ -28,6 +28,7 @@ object formulario_principal: Tformulario_principal
       Width = 32
       AutoSize = True
       Enabled = False
+      OnMouseMove = graficoMouseMove
     end
   end
   object barra_estado: TStatusBar
@@ -149,6 +150,7 @@ object formulario_principal: Tformulario_principal
       end
       object opcion_contraste: TMenuItem
         Caption = 'Contraste'
+        OnClick = opcion_contrasteClick
       end
       object opcion_gamma: TMenuItem
         Caption = 'Correcion Gamma'

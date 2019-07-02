@@ -30,7 +30,7 @@ var
     i,j : Integer;
     cl  : TColor;
 begin
-    ShowMessage('Copiar Canvas -> Matriz');
+    //ShowMessage('Copiar Canvas -> Matriz');
 	for i:=0 to alto-1 do begin
         for j:=0 to ancho-1 do begin
 
@@ -47,7 +47,7 @@ var
     i,j : Integer;
     cl  : TColor;
 begin
-    ShowMessage('Copiar Matriz -> Canvas');
+    //ShowMessage('Copiar Matriz -> Canvas');
 	for i:=0 to alto-1 do begin
         for j:=0 to ancho-1 do begin
         	cl 						 := RGB(matriz[i,j,2],matriz[i,j,1],matriz[i,j,0]);
@@ -61,7 +61,7 @@ var
 	i,j,k    : Integer;
 	pArrByte : PByte;
 begin
-    ShowMessage('Copiar Bitmap -> Matriz');
+    //ShowMessage('Copiar Bitmap -> Matriz');
 	for i:=0 to alto-1 do begin // recorre las filas
 		bmp.BeginUpdate;
         	pArrByte := bmp.ScanLine[i]; // obtiene la posicion de memoria del primer elemento de la matriz
@@ -81,7 +81,7 @@ var
     i,j,k      : Integer;
     pArrayByte : PByte;
 begin
-    ShowMessage('Copiar Matriz -> Bitmap');
+    //ShowMessage('Copiar Matriz -> Bitmap');
     for i:=0 to alto-1 do begin
         bmp.BeginUpdate;
         	pArrayByte := bmp.ScanLine[i];

@@ -51,6 +51,9 @@ type
 
     procedure FormCreate(Sender: TObject);
     procedure girarderClick(Sender: TObject);
+    procedure graficoMouseMove(Sender: TObject; Shift: TShiftState; X,
+        Y: Integer);
+    procedure opcion_contrasteClick(Sender: TObject);
     procedure opcion_guardar_comoClick(Sender: TObject);
 	procedure opcion_gammaClick(Sender: TObject);
     procedure opcion_guardar_imagenClick(Sender: TObject);
@@ -157,12 +160,105 @@ end;
 
 procedure Tformulario_principal.opcion_histogramaClick(Sender: TObject);
 begin
+    formulario_histograma.imagen_intensidad.Assign(grafico.Picture.Graphic);    // se le asigna la imagen
+	                                                                                // al bitmap del histograma
     formulario_histograma.show;
     if histograma_nuevo then begin
     	formulario_histograma.crear_histograma(alto_img,ancho_img,matRGB);
         formulario_histograma.dibujar_histograma(formulario_histograma.grafico_histograma);
         histograma_nuevo := false;
     end;
+end;
+
+{
+		OPCIONES DE FILTROS
+}
+
+procedure Tformulario_principal.opcion_grises_globalClick(Sender: TObject);
+begin
+    barra_estado.Panels[0].Text:='Aplicando Efecto. Por favor Espere';
+
+	cpCanvtoMatriz(alto_img,ancho_img,matRGB,grafico); // Cargar la informacion de la Imagen en el Bitmap
+    filtro_grises_global(alto_img,ancho_img,matRGB);
+
+    cpMatriztoBM(alto_img,ancho_img,matRGB,bitmap); // Carga la matriz al Bitmap
+    cpMatriztoCanv(alto_img,ancho_img,matRGB,grafico);
+
+    formulario_histograma.imagen_intensidad.Assign(grafico.Picture.Graphic);
+    formulario_histograma.crear_histograma(alto_img,ancho_img,matRGB);
+    formulario_histograma.dibujar_histograma(formulario_histograma.grafico_histograma);
+
+    barra_estado.Panels[0].Text:='Efecto Aplicado';
+end;
+
+procedure Tformulario_principal.opcion_grises_rClick(Sender: TObject);
+begin
+    barra_estado.Panels[0].Text:='Aplicando Efecto. Por favor Espere';
+
+	cpCanvtoMatriz(alto_img,ancho_img,matRGB,grafico); // Cargar la informacion de la Imagen en el Bitmap
+
+    filtro_grises_r(alto_img,ancho_img,matRGB);
+
+    cpMatriztoBM(alto_img,ancho_img,matRGB,bitmap); // Carga la matriz al Bitmap
+    cpMatriztoCanv(alto_img,ancho_img,matRGB,grafico);
+
+    formulario_histograma.imagen_intensidad.Assign(grafico.Picture.Graphic);
+    formulario_histograma.crear_histograma(alto_img,ancho_img,matRGB);
+    formulario_histograma.dibujar_histograma(formulario_histograma.grafico_histograma);
+
+    barra_estado.Panels[0].Text:='Efecto Aplicado';
+end;
+
+procedure Tformulario_principal.opcion_grises_gClick(Sender: TObject);
+begin
+    barra_estado.Panels[0].Text:='Aplicando Efecto. Por favor Espere';
+
+    cpCanvtoMatriz(alto_img,ancho_img,matRGB,grafico); // Cargar la informacion de la Imagen en el Bitmap
+
+    filtro_grises_g(alto_img,ancho_img,matRGB);
+
+    cpMatriztoBM(alto_img,ancho_img,matRGB,bitmap); // Carga la matriz al Bitmap
+    cpMatriztoCanv(alto_img,ancho_img,matRGB,grafico);
+
+    formulario_histograma.imagen_intensidad.Assign(grafico.Picture.Graphic);
+    formulario_histograma.crear_histograma(alto_img,ancho_img,matRGB);
+    formulario_histograma.dibujar_histograma(formulario_histograma.grafico_histograma);
+
+    barra_estado.Panels[0].Text:='Efecto Aplicado';
+end;
+
+procedure Tformulario_principal.opcion_grises_bClick(Sender: TObject);
+begin
+    barra_estado.Panels[0].Text:='Aplicando Efecto. Por favor Espere';
+
+	cpCanvtoMatriz(alto_img,ancho_img,matRGB,grafico); // Cargar la informacion de la Imagen en el Bitmap
+
+    filtro_grises_b(alto_img,ancho_img,matRGB);
+
+    cpMatriztoBM(alto_img,ancho_img,matRGB,bitmap); // Carga la matriz al Bitmap
+    cpMatriztoCanv(alto_img,ancho_img,matRGB,grafico);
+
+    formulario_histograma.imagen_intensidad.Assign(grafico.Picture.Graphic);
+    formulario_histograma.crear_histograma(alto_img,ancho_img,matRGB);
+    formulario_histograma.dibujar_histograma(formulario_histograma.grafico_histograma);
+
+    barra_estado.Panels[0].Text:='Efecto Aplicado';
+end;
+
+procedure Tformulario_principal.opcion_negativoClick(Sender: TObject);
+begin
+    barra_estado.Panels[0].Text:='Aplicando Efecto. Por favor Espere';
+
+    filtro_negativo(alto_img,ancho_img,matRGB);
+
+    cpMatriztoBM(alto_img,ancho_img,matRGB,bitmap); // Carga la matriz al Bitmap
+    grafico.Picture.Assign(bitmap);
+
+    formulario_histograma.imagen_intensidad.Assign(grafico.Picture.Graphic);
+    formulario_histograma.crear_histograma(alto_img,ancho_img,matRGB);
+    formulario_histograma.dibujar_histograma(formulario_histograma.grafico_histograma);
+
+    barra_estado.Panels[0].Text:='Efecto Aplicado';
 end;
 
 procedure Tformulario_principal.opcion_umbralClick(Sender: TObject);
@@ -187,93 +283,6 @@ begin
 	end;
 end;
 
-{
-		OPCIONES DE FILTROS
-}
-
-procedure Tformulario_principal.opcion_grises_globalClick(Sender: TObject);
-begin
-    barra_estado.Panels[0].Text:='Aplicando Efecto. Por favor Espere';
-
-	cpCanvtoMatriz(alto_img,ancho_img,matRGB,grafico); // Cargar la informacion de la Imagen en el Bitmap
-
-    filtro_grises_global(alto_img,ancho_img,matRGB);
-
-    cpMatriztoBM(alto_img,ancho_img,matRGB,bitmap); // Carga la matriz al Bitmap
-    cpMatriztoCanv(alto_img,ancho_img,matRGB,grafico);
-
-    formulario_histograma.crear_histograma(alto_img,ancho_img,matRGB);
-    formulario_histograma.dibujar_histograma(formulario_histograma.grafico_histograma);
-
-    barra_estado.Panels[0].Text:='Efecto Aplicado';
-end;
-
-procedure Tformulario_principal.opcion_grises_rClick(Sender: TObject);
-begin
-    barra_estado.Panels[0].Text:='Aplicando Efecto. Por favor Espere';
-
-	cpCanvtoMatriz(alto_img,ancho_img,matRGB,grafico); // Cargar la informacion de la Imagen en el Bitmap
-
-    filtro_grises_r(alto_img,ancho_img,matRGB);
-
-    cpMatriztoBM(alto_img,ancho_img,matRGB,bitmap); // Carga la matriz al Bitmap
-    cpMatriztoCanv(alto_img,ancho_img,matRGB,grafico);
-
-    formulario_histograma.crear_histograma(alto_img,ancho_img,matRGB);
-    formulario_histograma.dibujar_histograma(formulario_histograma.grafico_histograma);
-
-    barra_estado.Panels[0].Text:='Efecto Aplicado';
-end;
-
-procedure Tformulario_principal.opcion_grises_gClick(Sender: TObject);
-begin
-    barra_estado.Panels[0].Text:='Aplicando Efecto. Por favor Espere';
-
-    cpCanvtoMatriz(alto_img,ancho_img,matRGB,grafico); // Cargar la informacion de la Imagen en el Bitmap
-
-    filtro_grises_g(alto_img,ancho_img,matRGB);
-
-    cpMatriztoBM(alto_img,ancho_img,matRGB,bitmap); // Carga la matriz al Bitmap
-    cpMatriztoCanv(alto_img,ancho_img,matRGB,grafico);
-
-    formulario_histograma.crear_histograma(alto_img,ancho_img,matRGB);
-    formulario_histograma.dibujar_histograma(formulario_histograma.grafico_histograma);
-
-    barra_estado.Panels[0].Text:='Efecto Aplicado';
-end;
-
-procedure Tformulario_principal.opcion_grises_bClick(Sender: TObject);
-begin
-    barra_estado.Panels[0].Text:='Aplicando Efecto. Por favor Espere';
-
-	cpCanvtoMatriz(alto_img,ancho_img,matRGB,grafico); // Cargar la informacion de la Imagen en el Bitmap
-
-    filtro_grises_b(alto_img,ancho_img,matRGB);
-
-    cpMatriztoBM(alto_img,ancho_img,matRGB,bitmap); // Carga la matriz al Bitmap
-    cpMatriztoCanv(alto_img,ancho_img,matRGB,grafico);
-
-    formulario_histograma.crear_histograma(alto_img,ancho_img,matRGB);
-    formulario_histograma.dibujar_histograma(formulario_histograma.grafico_histograma);
-
-    barra_estado.Panels[0].Text:='Efecto Aplicado';
-end;
-
-procedure Tformulario_principal.opcion_negativoClick(Sender: TObject);
-begin
-    barra_estado.Panels[0].Text:='Aplicando Efecto. Por favor Espere';
-
-    filtro_negativo(alto_img,ancho_img,matRGB);
-
-    cpMatriztoBM(alto_img,ancho_img,matRGB,bitmap); // Carga la matriz al Bitmap
-    grafico.Picture.Assign(bitmap);
-
-    formulario_histograma.crear_histograma(alto_img,ancho_img,matRGB);
-    formulario_histograma.dibujar_histograma(formulario_histograma.grafico_histograma);
-
-    barra_estado.Panels[0].Text:='Efecto Aplicado';
-end;
-
 procedure Tformulario_principal.zoominClick(Sender: TObject);
 begin
     // proceso de llenado de pixeles
@@ -289,7 +298,7 @@ end;
 
 procedure Tformulario_principal.zoomoutClick(Sender: TObject);
 begin
-    if (alto_img < 5) and (ancho_img < 5) then begin
+    if (alto_img > 5) and (ancho_img > 5) then begin
         zoom_out(alto_img,ancho_img,matRGB);
 	    alto_img := alto_img div 2;
 	    ancho_img := ancho_img div 2;
@@ -334,19 +343,53 @@ begin
     grafico.Picture.Assign(bitmap);
 end;
 
-procedure Tformulario_principal.opcion_gammaClick(Sender: TObject);
+procedure Tformulario_principal.graficoMouseMove(Sender: TObject;
+    Shift: TShiftState; X, Y: Integer);
+begin
+    barra_estado.Panels[1].Text:='RGB = ('+IntToStr(matRGB[X,Y,0])+','+IntToStr(matRGB[X,Y,1])+','+IntToStr(matRGB[X,Y,2])+')';
+end;
+
+procedure Tformulario_principal.opcion_contrasteClick(Sender: TObject);
 begin
     barra_estado.Panels[0].Text:='Aplicando Efecto. Por favor Espere';
-    cpCanvtoMatriz(alto_img,ancho_img,matRGB,grafico); // Cargar la informacion de la Imagen en el Bitmap
 
-	//filtro_correcion_gamma(alto_img,ancho_img,matRGB);
+    //cpMatriztoBM(alto_img,ancho_img,matRGB,bitmap);
+    formulario_contraste.grafico_contraste.Height := bitmap.Height;
+    formulario_contraste.grafico_contraste.Width  := bitmap.Width;
+    formulario_contraste.grafico_contraste.Picture.Assign(bitmap);
 
-    cpMatriztoBM(alto_img,ancho_img,matRGB,bitmap); // Carga la matriz al Bitmap
-    //cpMatriztoCanv(alto_img,ancho_img,matRGB,grafico);
-    grafico.Picture.Assign(bitmap);
+    formulario_contraste.ShowModal;
+    if formulario_contraste.ModalResult = MrOk then begin
+    	cpMatriztoBM(alto_img,ancho_img,formulario_contraste.matriz_contraste,bitmap);
+        cpBmtoMatriz(alto_img,ancho_img,matRGB,bitmap);
+        grafico.Picture.Assign(bitmap);
 
-    formulario_histograma.crear_histograma(alto_img,ancho_img,matRGB);
-    formulario_histograma.dibujar_histograma(formulario_histograma.grafico_histograma);
+        formulario_histograma.imagen_intensidad.Assign(grafico.Picture.Graphic);
+        formulario_histograma.crear_histograma(alto_img,ancho_img,matRGB);
+        formulario_histograma.dibujar_histograma(formulario_histograma.grafico_histograma);
+    end;
+    barra_estado.Panels[0].Text:='Efecto Aplicado';
+end;
+
+procedure Tformulario_principal.opcion_gammaClick(Sender: TObject);
+begin
+    barra_estado.Panels[0].Text:='Aplicando Efecto, por favor espere..';
+
+    //cpMatriztoBM(alto_img,ancho_img,matRGB,bitmap);
+    formulario_gamma.grafico_gamma.Height :=bitmap.Height;
+    formulario_gamma.grafico_gamma.Width  :=bitmap.Width;
+    formulario_gamma.grafico_gamma.Picture.Assign(bitmap);
+
+    formulario_gamma.ShowModal;
+    if formulario_gamma.ModalResult = MrOk then begin
+    	cpMatriztoBM(alto_img,ancho_img,formulario_gamma.matriz_gamma,bitmap);
+        cpBMtoMatriz(alto_img,ancho_img,matRGB,bitmap);
+        grafico.Picture.Assign(bitmap);
+
+        formulario_histograma.imagen_intensidad.Assign(grafico.Picture.Graphic);
+        formulario_histograma.crear_histograma(alto_img,ancho_img,matRGB);
+        formulario_histograma.dibujar_histograma(formulario_histograma.grafico_histograma);
+    end;
 
     barra_estado.Panels[0].Text:='Efecto Aplicado';
 end;

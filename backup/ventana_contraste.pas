@@ -6,18 +6,22 @@ interface
 
 uses
     Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ComCtrls, Buttons,
-    ExtCtrls, StdCtrls;
+    ExtCtrls, StdCtrls,metodos_proyecto_pid_vha, Math,funciones_control;
 
 type
 
-    { TForm1 }
+    { Tformulario_contraste }
 
     matrizRGB = Array of Array of Array of Byte;
 
-    TForm1 = class(TForm)
+    Tformulario_contraste = class(TForm)
         btn_ok: TBitBtn;
         btn_cancelar: TBitBtn;
         grafico_contraste: TImage;
+        Label1: TLabel;
+        Label2: TLabel;
+        Label3: TLabel;
+        estado_contraste: TStatusBar;
         titulo_contraste: TLabel;
         valor_contraste: TLabel;
         scroll_contraste: TScrollBox;
@@ -25,44 +29,137 @@ type
         procedure apertura_contrasteChange(Sender: TObject);
         procedure apertura_contrasteMouseUp(Sender: TObject;
             Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+        procedure FormCreate(Sender: TObject);
+        procedure FormShow(Sender: TObject);
     private
         procedure filtro_contraste(matriz : matrizRGB);
 
     public
         // variables
         matriz_contraste : matrizRGB;
-        imagen_original : TBitmap;
+        imagen_original,bmp_contraste : TBitmap;
 
-
+        contraste : Double;
         // procedimientos
 
 
     end;
 
 var
-    Form1: TForm1;
+    formulario_contraste: Tformulario_contraste;
 
+    alto, ancho : Integer;
 implementation
 
 {$R *.lfm}
 
-{ TForm1 }
+{ Tformulario_contraste }
 
-procedure TForm1.apertura_contrasteChange(Sender: TObject);
+
+procedure Tformulario_contraste.FormCreate(Sender: TObject);
 begin
-	filtro_contraste(matriz_contraste);
+	imagen_original := TBitmap.Create;
 end;
 
-procedure TForm1.apertura_contrasteMouseUp(Sender: TObject;
-    Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+procedure Tformulario_contraste.FormShow(Sender: TObject);
+begin
+	alto  := grafico_contraste.Height;
+    ancho := grafico_contraste.Width;
+
+    SetLength(matriz_contraste,alto,ancho,3);
+
+    imagen_original.Assign(grafico_contraste.Picture.Graphic);
+end;
+
+procedure Tformulario_contraste.apertura_contrasteChange(Sender: TObject);
 begin
 
+    {case apertura_contraste.Position of
+    	1: begin
+            contraste := 0;
+    		valor_contraste.Caption := FloatToStr(contraste);
+        end;
+
+        2: begin
+            contraste := 1/512;
+            valor_contraste.Caption := FloatToStr(contraste);
+        end;
+
+        3: begin
+            contraste := 1/256;
+            valor_contraste.Caption := FloatToStr(contraste);
+        end;
+
+        4: begin
+            contraste := 1/128;
+            valor_contraste.Caption:= FloatToStr(contraste);
+        end;
+
+        5: begin
+            contraste := 1/64;
+            valor_contraste.Caption:= FloatToStr(contraste);
+        end;
+
+        6: begin
+            contraste := 1/32;
+            valor_contraste.Caption:= FloatToStr(contraste);
+        end;
+
+        7: begin
+            contraste := 1/16;
+            valor_contraste.Caption:= FloatToStr(contraste);
+        end;
+
+        8: begin
+            contraste := 1/8;
+            valor_contraste.Caption:= FloatToStr(contraste);
+        end;
+
+        9 : begin
+            contraste := 1/4;
+            valor_contraste.Caption:= FloatToStr(contraste);
+        end;
+
+        10: begin
+            contraste := 1/2;
+            valor_contraste.Caption := FloatToStr(contraste);
+        end;
+
+        else begin
+            contraste := apertura_contraste.Position-10;
+            valor_contraste.Caption:= FloatToStr(contraste);
+        end;
+    end;}
+
+    contraste := apertura_contraste.Position;
+    valor_contraste.Caption:= FloatToStr(contraste);
+end;
+
+procedure Tformulario_contraste.apertura_contrasteMouseUp(Sender: TObject;
+    Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+    estado_contraste.Panels[0].Text:='Aplicando efecto, por favor espere...';
+
+	grafico_contraste.Picture.Assign(imagen_original);
+    cpBMtoMatriz(alto,ancho,matriz_contraste,imagen_original);
+    filtro_contraste(matriz_contraste);
+    cpMatriztoCanv(alto,ancho,matriz_contraste,grafico_contraste);
+
+    estado_contraste.Panels[0].Text:='Efecto Aplicado';
 end;
 
 procedure Tformulario_contraste.filtro_contraste(matriz : matrizRGB);
 var
     i,j,k : Integer;
 begin
+	for i:=0 to alto-1 do begin
+      	for j:= 0 to ancho-1 do begin
+            for k:=0 to 2 do begin
+            	//matriz[i,j,k] := trunc ( (255 / 2) * (1 + tanh(contraste *((matriz[i,j,k]-255)/ 2) )) );
+                matriz[i,j,k] := trunc (matriz[i,j,k] - (contraste * sin( (2*3.1416*matriz[i,j,k]) / 255 ) ) );
+            end;
+        end;
+    end;
 end;
 
 end.

@@ -50,7 +50,7 @@ begin
     ShowMessage('Copiar Matriz -> Canvas');
 	for i:=0 to alto-1 do begin
         for j:=0 to ancho-1 do begin
-        	cl 						 := RGB(matriz[i,j,0],matriz[i,j,1],matriz[i,j,2]);
+        	cl 						 := RGB(matriz[i,j,2],matriz[i,j,1],matriz[i,j,0]);
             image.Canvas.Pixels[j,i] := cl;
 		end;
 	end;

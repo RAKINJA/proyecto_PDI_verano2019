@@ -74,7 +74,7 @@
       <Unit7>
         <Filename Value="ventana_contraste.pas"/>
         <IsPartOfProject Value="True"/>
-        <ComponentName Value="Form1"/>
+        <ComponentName Value="formulario_contraste"/>
         <ResourceBaseClass Value="Form"/>
       </Unit7>
     </Units>

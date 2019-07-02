@@ -18,8 +18,6 @@ type
     procedure filtro_grises_g(alto,ancho : Integer; var matriz: matrizRGB);
     procedure filtro_grises_b(alto,ancho : Integer; var matriz: matrizRGB);
 
-    procedure filtro_correcion_gamma(alto,ancho:Integer; var matriz: matrizRGB);
-
     procedure zoom_in(nuevo_alto,nuevo_ancho : Integer; var matriz : matrizRGB);
     procedure zoom_out(alto,ancho : Integer ; var matriz : matrizRGB);
     procedure girar_izq(alto,ancho : Integer ; var matriz : matrizRGB);
@@ -111,22 +109,6 @@ begin
 	end;
 end; // fin filtro_grises_b
 
-procedure filtro_correcion_gamma(alto,ancho:Integer; var matriz: matrizRGB);
-var
-    i,j   :Integer;
-    gamma : Double;
-    k  	  : Byte;
-begin
-    gamma := 0.1;
-	for i:=0 to alto-1 do begin
-        for j:= 0 to ancho-1 do begin
-            for k:=0 to 2 do begin
-                matriz[i,j,k] := trunc(power(matriz[i,j,k]/255,gamma)*255);
-			end;
-		end;
-	end;
-end;
-
 procedure zoom_in(nuevo_alto,nuevo_ancho : Integer; var matriz : matrizRGB);
 var
     matriz_aux : matrizRGB;
@@ -183,13 +165,12 @@ begin
 
     // reescalar la matriz principal
     SetLength(matriz,nuevo_alto*2,nuevo_ancho*2,3);
-    //ShowMessage('el tamaño de la MATRIZ PRINCIPAL ES '+IntToStr(alto)+' y '+IntToStr(ancho));
+
     // copiar matriz_aux a matriz principal
     for i:=0 to alto-1 do begin
         for j:=0 to ancho-1 do begin
             for k:=0 to 2 do begin
                 matriz[i,j,k] := matriz_aux[i,j,k];
-                //ShowMessage('-> [ '+IntToStr(i)+' | '+IntToStr(j)+' | '+IntToStr(k)+' ]= '+IntToStr(matriz_aux[i,j,k]));
             end;
         end;
 	end;
@@ -206,7 +187,7 @@ begin
     nuevo_alto  := alto div 2;
     nuevo_ancho := ancho div 2;
     SetLength(matriz_aux,(nuevo_alto), (nuevo_ancho), 3);
-	ShowMessage('el tamaño de AUX es '+IntToStr(nuevo_alto)+' y '+IntToStr(nuevo_ancho));
+	//ShowMessage('el tamaño de AUX es '+IntToStr(nuevo_alto)+' y '+IntToStr(nuevo_ancho));
 	for i:=0 to nuevo_alto-1 do begin
 		for j:= 0 to nuevo_ancho-1 do begin
             for k:=0 to 2 do begin
