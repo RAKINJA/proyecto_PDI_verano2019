@@ -140,6 +140,7 @@ begin
     // crear la imagen a escala de grises
     SetLength(matriz_intensidad,imagen_intensidad.Height,imagen_intensidad.Width,3);
     cpBMtoMatriz(imagen_intensidad.Height,imagen_intensidad.Width,matriz_intensidad,imagen_intensidad);
+
     filtro_grises_global(imagen_intensidad.Height,imagen_intensidad.Width,matriz_intensidad);
     inicializar_histograma_i(alto,ancho,matriz_intensidad);
 	asignar_alturas_i();
@@ -166,27 +167,37 @@ procedure Tformulario_histograma.inicializar_histograma(alto,ancho : Integer; ma
 var
     i,j,k,l : Integer;
 begin
+    for i:=0 to 2 do begin
+        for j:=0 to 255 do begin
+            matriz_histograma[i,j] := 0;
+            altura[i,j] := 0;
+        end;
+    end;
+
 	for k:=0 to 2 do begin
 
             for i:=0 to alto-1 do begin
                 for j:=0 to ancho-1 do begin
                     l := matriz[i,j,k];
+
                     matriz_histograma[k,l] := matriz_histograma[k,l]+1;
 
                     if matriz_histograma[k,l] > maximo then maximo := matriz_histograma[k,l];
 
                 end; // end for j
             end; // end for i
-    end; // end for k
 
-    maximo_r := matriz_histograma[0,0];
+        //end // end of j
+    end; // end for i
+
+    maximo_r := matriz_histograma[2,0];
     maximo_g := matriz_histograma[1,0];
-    maximo_b := matriz_histograma[2,0];
+    maximo_b := matriz_histograma[1,0];
 
     for i := 0 to 255 do begin
-		if maximo_r < matriz_histograma[0,i] then maximo_r := matriz_histograma[0,i];
-        if maximo_g < matriz_histograma[1,i] then maximo_r := matriz_histograma[1,i];
-        if maximo_b < matriz_histograma[2,i] then maximo_r := matriz_histograma[2,i];
+		if maximo_b < matriz_histograma[0,i] then maximo_b := matriz_histograma[0,i];
+        if maximo_g < matriz_histograma[1,i] then maximo_g := matriz_histograma[1,i];
+        if maximo_r < matriz_histograma[2,i] then maximo_r := matriz_histograma[2,i];
 	end;
 
 
@@ -207,13 +218,12 @@ begin
 	// proceso de calcular altura para cada punto en el arreglo
 	for i:= 0 to 2 do begin
 
-        if i = 0 then maximo_hs := maximo_r;
+        if i = 2 then maximo_hs := maximo_r;
         if i = 1 then maximo_hs := maximo_g;
-        if i = 2 then maximo_hs := maximo_b;
+        if i = 0 then maximo_hs := maximo_b;
 
         for j:= 0 to 255 do begin
             frag := 1-(matriz_histograma[i,j] / maximo_hs);
-            //ShowMessage('Frag  ['+IntToStr(i)+' | '+IntToStr(j)+'] = '+FloatToStr(frag));
             altura[i,j] := trunc(140*(frag));
         end;
 	end;
@@ -223,8 +233,12 @@ procedure Tformulario_histograma.inicializar_histograma_i(alto,ancho : Integer; 
 var
     i,j,l : Integer;
 begin
+    ShowMessage('Alto  := '+IntToStr(alto));
+    ShowMessage('Ancho := '+IntToStr(ancho));
+
 	for i:=0 to alto-1 do begin
     	for j:=0 to ancho-1 do begin
+            ShowMessage('Alto := '+IntToStr(matriz[i,j,0]));
         	l := matriz[i,j,0];
            	intensidad[0,l] :=intensidad[0,l]+1;
 
@@ -266,10 +280,9 @@ begin
     ant_x := 0; ant_y := grafico_histograma.Height;;
 
     for j:=0 to 255 do begin
-        grafico.Canvas.Line(ant_x,ant_y,j,altura[0,j]);
-        //ShowMessage('Punto ['+IntToStr(ant_x)+' | '+IntToStr(ant_y)+'] --> ['+IntToStr(j)+' | '+IntToStr(altura[0,j]));
+        grafico.Canvas.Line(ant_x,ant_y,j,altura[2,j]);
         ant_x := j;
-        ant_y := altura[0,j];
+        ant_y := altura[2,j];
     end;
     grafico_histograma.Canvas.Pen.Color:=Clblack;
 end;
@@ -298,10 +311,10 @@ begin
     ant_x := 0; ant_y := grafico_histograma.Height;
 
 	for j:=0 to 255 do begin
-		grafico.Canvas.Line(ant_x,ant_y,j,altura[2,j]);
+		grafico.Canvas.Line(ant_x,ant_y,j,altura[0,j]);
 
         ant_x := j;
-        ant_y := altura[2,j];
+        ant_y := altura[0,j];
     end;
     grafico_histograma.Canvas.Pen.Color:=Clblack;
 end;

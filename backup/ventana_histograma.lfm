@@ -19,7 +19,7 @@ object formulario_histograma: Tformulario_histograma
     Left = 80
     Height = 15
     Top = 8
-    Width = 158
+    Width = 156
     Caption = 'HISTOGRAMA DE LA IMAGEN'
     ParentColor = False
   end

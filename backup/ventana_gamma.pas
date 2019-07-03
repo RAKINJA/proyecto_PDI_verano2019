@@ -66,7 +66,7 @@ begin
 
     imagen_original.Assign(grafico_gamma.Picture.Graphic);
 
-
+    apertura_gamma.Position:=11;
 end;
 
 procedure Tformulario_gamma.apertura_gammaChange(Sender: TObject);
