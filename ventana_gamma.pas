@@ -57,6 +57,18 @@ begin
 	imagen_original := TBitmap.Create;
 end;
 
+procedure Tformulario_gamma.FormShow(Sender: TObject);
+begin
+    alto  := grafico_gamma.Height;
+    ancho := grafico_gamma.Width;
+
+    SetLength(matriz_gamma,alto,ancho,3);
+
+    imagen_original.Assign(grafico_gamma.Picture.Graphic);
+
+    apertura_gamma.Position:=11;
+end;
+
 procedure Tformulario_gamma.apertura_gammaChange(Sender: TObject);
 begin
     case apertura_gamma.Position of
@@ -128,17 +140,6 @@ begin
     cpMatriztoCanv(alto,ancho,matriz_gamma,grafico_gamma);
 
     estado_gamma.Panels[0].Text:='Efecto Aplicado';
-end;
-
-procedure Tformulario_gamma.FormShow(Sender: TObject);
-begin
-    alto  := grafico_gamma.Height;
-    ancho := grafico_gamma.Width;
-
-    SetLength(matriz_gamma,alto,ancho,3);
-
-    imagen_original.Assign(grafico_gamma.Picture.Graphic);
-
 end;
 
 procedure Tformulario_gamma.filtro_correcion_gamma(matriz: matrizRGB);

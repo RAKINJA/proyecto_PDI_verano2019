@@ -150,11 +150,12 @@ var
     i,j : Integer;
 begin
     maximo := 0; maximo_r :=0; maximo_b :=0; maximo_g :=0; maximo_intensidad := 0;
-	for i:=0 to 2 do begin
+    for i:=0 to 2 do begin
      	for j:=0 to 255 do begin
-			matriz_histograma[i,j] := 0;
+            matriz_histograma[i,j] := 0;
             altura[i,j]            := 0;
-			if i < 2 then begin
+
+	    	if i < 2 then begin
 				intensidad[i,j] := 0;
             end;
         end;
@@ -174,24 +175,20 @@ begin
 
                     if matriz_histograma[k,l] > maximo then maximo := matriz_histograma[k,l];
 
-                    case k of
-                        0: begin
-                        	if (matriz_histograma[k,l] > maximo_r) then maximo_r := matriz_histograma[k,l];
-                        end;
-
-                    	1: begin
-                            if (matriz_histograma[k,l] > maximo_b) then maximo_b := matriz_histograma[k,l];
-                        end;
-
-                        2: begin
-                            if (matriz_histograma[k,l] > maximo_g) then maximo_g := matriz_histograma[k,l];
-                        end;
-                    end;
-
                 end; // end for j
             end; // end for i
-
     end; // end for k
+
+    maximo_r := matriz_histograma[0,0];
+    maximo_g := matriz_histograma[1,0];
+    maximo_b := matriz_histograma[2,0];
+
+    for i := 0 to 255 do begin
+		if maximo_r < matriz_histograma[0,i] then maximo_r := matriz_histograma[0,i];
+        if maximo_g < matriz_histograma[1,i] then maximo_r := matriz_histograma[1,i];
+        if maximo_b < matriz_histograma[2,i] then maximo_r := matriz_histograma[2,i];
+	end;
+
 
     ShowMessage('Maximo R '+IntToStr(maximo_r));
     ShowMessage('Maximo G '+IntToStr(maximo_g));
@@ -215,7 +212,7 @@ begin
         if i = 2 then maximo_hs := maximo_b;
 
         for j:= 0 to 255 do begin
-            frag := 1-(matriz_histograma[i,j] / maximo_hs);
+            frag := 1-(matriz_histograma[i,j] / maximo);
             //ShowMessage('Frag  ['+IntToStr(i)+' | '+IntToStr(j)+'] = '+FloatToStr(frag));
             altura[i,j] := trunc(140*(frag));
         end;
@@ -245,7 +242,7 @@ var
 begin
 	// proceso de calcular altura para cada punto en el arreglo
     for j:= 0 to 255 do begin
-        frag := 1-(intensidad[0,j] / maximo_intensidad);
+        frag := 1-(intensidad[0,j] / maximo);
         //ShowMessage('Frag  ['+IntToStr(1)+' | '+IntToStr(j)+'] = '+FloatToStr(frag));
     	intensidad[1,j] := trunc(140*(frag));
 
@@ -268,8 +265,8 @@ begin
     grafico_histograma.Canvas.Pen.Color:=Clred;
     ant_x := 0; ant_y := grafico_histograma.Height;;
 
-	for j:=0 to 255 do begin
-		grafico.Canvas.Line(ant_x,ant_y,j,altura[0,j]);
+    for j:=0 to 255 do begin
+        grafico.Canvas.Line(ant_x,ant_y,j,altura[0,j]);
         //ShowMessage('Punto ['+IntToStr(ant_x)+' | '+IntToStr(ant_y)+'] --> ['+IntToStr(j)+' | '+IntToStr(altura[0,j]));
         ant_x := j;
         ant_y := altura[0,j];

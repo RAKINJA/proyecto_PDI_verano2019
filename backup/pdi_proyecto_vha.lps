@@ -18,9 +18,8 @@
         <ComponentName Value="formulario_principal"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
-        <TopLine Value="346"/>
-        <CursorPos X="96" Y="349"/>
+        <TopLine Value="87"/>
+        <CursorPos X="39" Y="86"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -41,8 +40,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="228"/>
-        <CursorPos X="24" Y="234"/>
+        <TopLine Value="196"/>
+        <CursorPos X="6" Y="196"/>
         <UsageCount Value="203"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -73,11 +72,13 @@
         <Filename Value="ventana_gamma.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="formulario_gamma"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="136"/>
-        <CursorPos X="60" Y="153"/>
-        <UsageCount Value="169"/>
+        <TopLine Value="44"/>
+        <CursorPos X="39" Y="67"/>
+        <UsageCount Value="171"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit6>
@@ -85,11 +86,12 @@
         <Filename Value="ventana_contraste.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="formulario_contraste"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="2"/>
         <TopLine Value="122"/>
         <CursorPos X="56" Y="159"/>
-        <UsageCount Value="169"/>
+        <UsageCount Value="171"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit7>
@@ -101,127 +103,123 @@
         <UsageCount Value="13"/>
       </Unit8>
     </Units>
-    <JumpHistory Count="30" HistoryIndex="29">
+    <JumpHistory Count="29" HistoryIndex="28">
       <Position1>
         <Filename Value="ventana_gamma.pas"/>
-        <Caret Line="58" Column="16" TopLine="39"/>
+        <Caret Line="31" Column="54" TopLine="10"/>
       </Position1>
       <Position2>
         <Filename Value="ventana_gamma.pas"/>
-        <Caret Line="66" Column="92" TopLine="41"/>
+        <Caret Line="36" Column="31"/>
       </Position2>
       <Position3>
         <Filename Value="ventana_gamma.pas"/>
-        <Caret Line="80" TopLine="53"/>
+        <Caret Line="37" Column="31"/>
       </Position3>
       <Position4>
         <Filename Value="ventana_gamma.pas"/>
-        <Caret Line="31" Column="54" TopLine="10"/>
+        <Caret Line="105" Column="51" TopLine="75"/>
       </Position4>
       <Position5>
         <Filename Value="ventana_gamma.pas"/>
-        <Caret Line="36" Column="31"/>
+        <Caret Line="124" Column="33" TopLine="103"/>
       </Position5>
       <Position6>
-        <Filename Value="ventana_gamma.pas"/>
-        <Caret Line="37" Column="31"/>
+        <Filename Value="ventana_contraste.pas"/>
+        <Caret Line="136" Column="9" TopLine="112"/>
       </Position6>
       <Position7>
         <Filename Value="ventana_gamma.pas"/>
-        <Caret Line="105" Column="51" TopLine="75"/>
+        <Caret Line="39" TopLine="3"/>
       </Position7>
       <Position8>
         <Filename Value="ventana_gamma.pas"/>
-        <Caret Line="124" Column="33" TopLine="103"/>
+        <Caret Line="55" Column="58" TopLine="31"/>
       </Position8>
       <Position9>
-        <Filename Value="ventana_contraste.pas"/>
-        <Caret Line="136" Column="9" TopLine="112"/>
-      </Position9>
-      <Position10>
-        <Filename Value="ventana_gamma.pas"/>
-        <Caret Line="39" TopLine="3"/>
-      </Position10>
-      <Position11>
-        <Filename Value="ventana_gamma.pas"/>
-        <Caret Line="55" Column="58" TopLine="31"/>
-      </Position11>
-      <Position12>
         <Filename Value="ventana_gamma.pas"/>
         <Caret Line="153" Column="42" TopLine="119"/>
+      </Position9>
+      <Position10>
+        <Filename Value="ventana_contraste.pas"/>
+        <Caret Line="159" Column="100" TopLine="120"/>
+      </Position10>
+      <Position11>
+        <Filename Value="ventana_contraste.pas"/>
+        <Caret Line="150" Column="65" TopLine="121"/>
+      </Position11>
+      <Position12>
+        <Filename Value="ventana_contraste.pas"/>
+        <Caret Line="159" Column="113" TopLine="121"/>
       </Position12>
       <Position13>
         <Filename Value="ventana_contraste.pas"/>
-        <Caret Line="159" Column="100" TopLine="120"/>
+        <Caret Line="126" Column="13" TopLine="104"/>
       </Position13>
       <Position14>
         <Filename Value="ventana_contraste.pas"/>
-        <Caret Line="150" Column="65" TopLine="121"/>
+        <Caret Line="125" Column="46" TopLine="104"/>
       </Position14>
       <Position15>
         <Filename Value="ventana_contraste.pas"/>
-        <Caret Line="159" Column="113" TopLine="121"/>
+        <Caret Line="159" Column="84" TopLine="121"/>
       </Position15>
       <Position16>
-        <Filename Value="ventana_contraste.pas"/>
-        <Caret Line="91" Column="13" TopLine="121"/>
-      </Position16>
-      <Position17>
-        <Filename Value="ventana_contraste.pas"/>
-        <Caret Line="126" Column="13" TopLine="104"/>
-      </Position17>
-      <Position18>
-        <Filename Value="ventana_contraste.pas"/>
-        <Caret Line="125" Column="46" TopLine="104"/>
-      </Position18>
-      <Position19>
-        <Filename Value="ventana_contraste.pas"/>
-        <Caret Line="159" Column="84" TopLine="121"/>
-      </Position19>
-      <Position20>
         <Filename Value="codigo_pdi_proyecto_vha.pas"/>
         <Caret Line="341" Column="59" TopLine="332"/>
+      </Position16>
+      <Position17>
+        <Filename Value="codigo_pdi_proyecto_vha.pas"/>
+        <Caret Line="348" Column="38" TopLine="331"/>
+      </Position17>
+      <Position18>
+        <Filename Value="codigo_pdi_proyecto_vha.pas"/>
+        <Caret Line="381" Column="23" TopLine="353"/>
+      </Position18>
+      <Position19>
+        <Filename Value="ventana_histograma.pas"/>
+        <Caret Line="223" Column="41" TopLine="202"/>
+      </Position19>
+      <Position20>
+        <Filename Value="ventana_gamma.pas"/>
+        <Caret Line="154" Column="80" TopLine="119"/>
       </Position20>
       <Position21>
         <Filename Value="codigo_pdi_proyecto_vha.pas"/>
-        <Caret Line="348" Column="38" TopLine="331"/>
+        <Caret Line="360" Column="29" TopLine="354"/>
       </Position21>
       <Position22>
-        <Filename Value="codigo_pdi_proyecto_vha.pas"/>
-        <Caret Line="381" Column="23" TopLine="353"/>
+        <Filename Value="ventana_gamma.pas"/>
+        <Caret Line="156" Column="52" TopLine="134"/>
       </Position22>
       <Position23>
-        <Filename Value="ventana_histograma.pas"/>
-        <Caret Line="223" Column="41" TopLine="202"/>
+        <Filename Value="codigo_pdi_proyecto_vha.pas"/>
+        <Caret Line="310" Column="27" TopLine="301"/>
       </Position23>
       <Position24>
-        <Filename Value="ventana_gamma.pas"/>
-        <Caret Line="154" Column="80" TopLine="119"/>
+        <Filename Value="codigo_pdi_proyecto_vha.pas"/>
+        <Caret Line="287" Column="8" TopLine="283"/>
       </Position24>
       <Position25>
         <Filename Value="codigo_pdi_proyecto_vha.pas"/>
-        <Caret Line="360" Column="29" TopLine="354"/>
+        <Caret Line="289" Column="19" TopLine="283"/>
       </Position25>
       <Position26>
-        <Filename Value="ventana_gamma.pas"/>
-        <Caret Line="156" Column="52" TopLine="134"/>
+        <Filename Value="codigo_pdi_proyecto_vha.pas"/>
+        <Caret Line="263" Column="25" TopLine="257"/>
       </Position26>
       <Position27>
         <Filename Value="codigo_pdi_proyecto_vha.pas"/>
-        <Caret Line="310" Column="27" TopLine="301"/>
+        <Caret Line="349" Column="50" TopLine="336"/>
       </Position27>
       <Position28>
         <Filename Value="codigo_pdi_proyecto_vha.pas"/>
-        <Caret Line="287" Column="8" TopLine="283"/>
+        <Caret Line="357" Column="36" TopLine="345"/>
       </Position28>
       <Position29>
         <Filename Value="codigo_pdi_proyecto_vha.pas"/>
-        <Caret Line="289" Column="19" TopLine="283"/>
+        <Caret Line="163" Column="5" TopLine="156"/>
       </Position29>
-      <Position30>
-        <Filename Value="codigo_pdi_proyecto_vha.pas"/>
-        <Caret Line="263" Column="25" TopLine="257"/>
-      </Position30>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
