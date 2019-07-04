@@ -82,7 +82,7 @@ procedure Tformulario_contraste.apertura_contrasteMouseUp(Sender: TObject;
 begin
     estado_contraste.Panels[0].Text:='Aplicando efecto, por favor espere...';
 
-	grafico_contraste.Picture.Assign(imagen_original);
+	//grafico_contraste.Picture.Assign(imagen_original);
 
     cpBMtoMatriz(alto,ancho,matriz_contraste,imagen_original);
     filtro_contraste(matriz_contraste);

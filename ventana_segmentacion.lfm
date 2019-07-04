@@ -1,5 +1,5 @@
 object formulario_segmentacion: Tformulario_segmentacion
-  Left = 2702
+  Left = 140
   Height = 320
   Top = 614
   Width = 513
@@ -8,7 +8,6 @@ object formulario_segmentacion: Tformulario_segmentacion
   ClientWidth = 513
   OnCreate = FormCreate
   OnShow = FormShow
-  LCLVersion = '2.0.2.0'
   object titulo_segmentacion: TLabel
     Left = 144
     Height = 15

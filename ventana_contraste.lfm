@@ -1,5 +1,5 @@
 object formulario_contraste: Tformulario_contraste
-  Left = 2264
+  Left = 140
   Height = 312
   Top = 317
   Width = 450
@@ -8,7 +8,6 @@ object formulario_contraste: Tformulario_contraste
   ClientWidth = 450
   OnCreate = FormCreate
   OnShow = FormShow
-  LCLVersion = '2.0.2.0'
   object apertura_contraste: TTrackBar
     Left = 64
     Height = 25
@@ -60,7 +59,7 @@ object formulario_contraste: Tformulario_contraste
     Left = 136
     Height = 15
     Top = 16
-    Width = 124
+    Width = 121
     Caption = 'VALOR DE CONTRASTE'
     ParentColor = False
   end

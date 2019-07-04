@@ -1,14 +1,13 @@
 object formulario_gamma: Tformulario_gamma
-  Left = 398
+  Left = 140
   Height = 276
-  Top = 325
+  Top = 644
   Width = 430
   Caption = 'Correccion Gamma'
   ClientHeight = 276
   ClientWidth = 430
   OnCreate = FormCreate
   OnShow = FormShow
-  LCLVersion = '2.0.2.0'
   object titulo_gamma: TLabel
     Left = 136
     Height = 15

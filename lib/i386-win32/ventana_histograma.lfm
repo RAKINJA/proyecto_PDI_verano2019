@@ -1,14 +1,13 @@
 object formulario_histograma: Tformulario_histograma
-  Left = 582
+  Left = 140
   Height = 238
-  Top = 297
+  Top = 318
   Width = 309
   Caption = 'Histograma'
   ClientHeight = 238
   ClientWidth = 309
   OnCreate = FormCreate
   OnShow = FormShow
-  LCLVersion = '2.0.2.0'
   object grafico_histograma: TImage
     Left = 8
     Height = 58

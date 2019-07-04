@@ -1,5 +1,5 @@
 object formulario_gamma: Tformulario_gamma
-  Left = 2242
+  Left = 140
   Height = 276
   Top = 644
   Width = 430
@@ -8,7 +8,6 @@ object formulario_gamma: Tformulario_gamma
   ClientWidth = 430
   OnCreate = FormCreate
   OnShow = FormShow
-  LCLVersion = '2.0.2.0'
   object titulo_gamma: TLabel
     Left = 136
     Height = 15

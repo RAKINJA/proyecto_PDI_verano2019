@@ -1,16 +1,16 @@
 object formulario_principal: Tformulario_principal
-  Left = 511
-  Height = 497
-  Top = 22
-  Width = 800
+  Left = 0
+  Height = 500
+  Top = 177
+  Width = 786
   BorderStyle = bsSingle
-  Caption = 'formulario_principal'
-  ClientHeight = 477
-  ClientWidth = 800
+  Caption = 'Proyecto PDI - Verano 2019 - VHA'
+  ClientHeight = 500
+  ClientWidth = 786
   Color = 4276545
+  DefaultMonitor = dmPrimary
   Menu = menu_principal
   OnCreate = FormCreate
-  LCLVersion = '2.0.2.0'
   object cuadro_scroll: TScrollBox
     Left = 8
     Height = 76
@@ -28,14 +28,13 @@ object formulario_principal: Tformulario_principal
       Width = 32
       AutoSize = True
       Enabled = False
-      OnMouseMove = graficoMouseMove
     end
   end
   object barra_estado: TStatusBar
     Left = 0
     Height = 23
-    Top = 454
-    Width = 800
+    Top = 477
+    Width = 786
     Panels = <    
       item
         Width = 50
@@ -49,7 +48,7 @@ object formulario_principal: Tformulario_principal
     Left = 0
     Height = 20
     Top = 0
-    Width = 800
+    Width = 786
     ButtonHeight = 16
     ButtonWidth = 16
     Caption = 'barra_opciones'
@@ -108,11 +107,14 @@ object formulario_principal: Tformulario_principal
     end
     object menu_edicion: TMenuItem
       Caption = 'Edición'
+      OnClick = menu_edicionClick
       object opcion_deshacer: TMenuItem
         Caption = 'Deshacer'
+        OnClick = opcion_deshacerClick
       end
       object opcion_rehacer: TMenuItem
         Caption = 'Rehacer'
+        OnClick = opcion_rehacerClick
       end
       object opcion_original: TMenuItem
         Caption = 'Mostrar Original'
@@ -155,6 +157,10 @@ object formulario_principal: Tformulario_principal
       object opcion_gamma: TMenuItem
         Caption = 'Correcion Gamma'
         OnClick = opcion_gammaClick
+      end
+      object opcion_segmentacion: TMenuItem
+        Caption = 'Segmentacion de Gris'
+        OnClick = opcion_segmentacionClick
       end
     end
     object menu_ventana: TMenuItem

@@ -1,7 +1,7 @@
 object formulario_segmentacion: Tformulario_segmentacion
-  Left = 773
+  Left = 2702
   Height = 320
-  Top = 199
+  Top = 614
   Width = 513
   Caption = 'formulario_segmentacion'
   ClientHeight = 320

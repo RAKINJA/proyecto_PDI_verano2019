@@ -17,7 +17,7 @@ type
 
   	cambio = record
 		alto, ancho : Integer;
-        imagen : TBitmap;
+        matriz : matrizRGB;
 	end;
 
   Tformulario_principal = class(TForm)
@@ -57,8 +57,6 @@ type
 
     procedure FormCreate(Sender: TObject);
     procedure girarderClick(Sender: TObject);
-    procedure graficoMouseMove(Sender: TObject; Shift: TShiftState; X,
-        Y: Integer);
 	procedure menu_edicionClick(Sender: TObject);
 	procedure opcion_deshacerClick(Sender: TObject);
 	procedure opcion_rehacerClick(Sender: TObject);
@@ -81,7 +79,9 @@ type
     procedure zoomoutClick(Sender: TObject);
 
   private
-
+   	procedure guardar_cambios();
+    procedure tomar_cambios();
+    procedure recorrer_cambios();
   public
 
 
@@ -90,7 +90,6 @@ type
 
 var
 	formulario_principal: Tformulario_principal;
-
 	// VARIABLES
 	bitmap,bitmap_original		: Tbitmap;
 	matRGB          			: matrizRGB;
@@ -99,7 +98,7 @@ var
     histograma_nuevo,activo_original : Boolean;
 
     cambios : Array of cambio;
-    contador_cambios, maximo_cambios : Integer;
+    contador_cambios,cambios_reales, maximo_cambios : Integer;
 
 implementation
 
@@ -128,7 +127,8 @@ begin
     // variables
     activo_original  := false;
     contador_cambios := 0;
-    maximo_cambios   := 0;
+    cambios_reales   := 0;
+    maximo_cambios   := 10;
 end;
 
 procedure Tformulario_principal.opcion_originalClick(Sender: TObject);
@@ -161,17 +161,11 @@ begin
         grafico.Height := alto_img; grafico.Width := ancho_img; // Se actualiza el alto y ancho del Canvas conforme a la imagen
 		SetLength(matRGB,alto_img,ancho_img,3); // Reserva el espacio para la matrizRGB
 
-        inc(contador_cambios);
-        inc(maximo_cambios);
-        SetLength(cambios,contador_cambios);// Agrega la imagen original al arreglo de cambios
-
         grafico.Enabled:=True; // habilitar el TImage
 
 		cpBMtoMatriz(alto_img,ancho_img,matRGB,bitmap); // llama a la funcion para asignar los datos del bitmap a la matriz
         grafico.Picture.Assign(bitmap);
         bitmap_original.Assign(grafico.Picture.Bitmap);
-
-        metodos_proyecto_pid_vha.avance:=(alto_img*ancho_img) div 100;
 
         barra_opciones.Enabled:=true;
 
@@ -183,6 +177,9 @@ begin
         opcion_guardar_como.Enabled   := true;
 
         histograma_nuevo := true;
+
+        inc(contador_cambios);
+        guardar_cambios();
 
         barra_estado.Panels[0].Text:='Imagen Cargada';
     end;
@@ -214,18 +211,22 @@ begin
     cpMatriztoBM(alto_img,ancho_img,matRGB,bitmap); // Carga la matriz al Bitmap
     cpMatriztoCanv(alto_img,ancho_img,matRGB,grafico);
 
+    if contador_cambios = 10 then begin
+        recorrer_cambios();
+        guardar_cambios;
+    end else if contador_cambios < cambios_reales then begin
+        cambios_reales := contador_cambios;
+        inc(contador_cambios);
+        guardar_cambios();
+    end else begin
+        inc(contador_cambios);
+	    guardar_cambios();
+    end;
+
     // actualiza el histograma
     formulario_histograma.imagen_intensidad.Assign(grafico.Picture.Graphic);
     formulario_histograma.crear_histograma(alto_img,ancho_img,matRGB);
     formulario_histograma.dibujar_histograma(formulario_histograma.grafico_histograma);
-
-    // actualiza los cambios
-    SetLength(cambios,contador_cambios);
-    maximo_cambios := contador_cambios;
-
-    cambios[contador_cambios].imagen.Assign(bitmap);
-    cambios[contador_cambios].alto := alto_img;
-    cambios[contador_cambios].ancho := ancho_img;
 
     barra_estado.Panels[0].Text:='Efecto Aplicado';
 end;
@@ -241,17 +242,21 @@ begin
     cpMatriztoBM(alto_img,ancho_img,matRGB,bitmap); // Carga la matriz al Bitmap
     cpMatriztoCanv(alto_img,ancho_img,matRGB,grafico);
 
+    if contador_cambios = 10 then begin
+        recorrer_cambios();
+        guardar_cambios;
+    end else if contador_cambios < cambios_reales then begin
+        cambios_reales := contador_cambios;
+        inc(contador_cambios);
+        guardar_cambios();
+    end else begin
+        inc(contador_cambios);
+	    guardar_cambios();
+    end;
+
     formulario_histograma.imagen_intensidad.Assign(grafico.Picture.Graphic);
     formulario_histograma.crear_histograma(alto_img,ancho_img,matRGB);
     formulario_histograma.dibujar_histograma(formulario_histograma.grafico_histograma);
-
-    // actualiza los cambios
-    SetLength(cambios,contador_cambios);
-    maximo_cambios := contador_cambios;
-
-    cambios[contador_cambios].imagen.Assign(bitmap);
-    cambios[contador_cambios].alto := alto_img;
-    cambios[contador_cambios].ancho := ancho_img;
 
     barra_estado.Panels[0].Text:='Efecto Aplicado';
 end;
@@ -267,17 +272,21 @@ begin
     cpMatriztoBM(alto_img,ancho_img,matRGB,bitmap); // Carga la matriz al Bitmap
     cpMatriztoCanv(alto_img,ancho_img,matRGB,grafico);
 
+    if contador_cambios = 10 then begin
+        recorrer_cambios();
+        guardar_cambios;
+    end else if contador_cambios < cambios_reales then begin
+        cambios_reales := contador_cambios;
+        inc(contador_cambios);
+        guardar_cambios();
+    end else begin
+        inc(contador_cambios);
+	    guardar_cambios();
+    end;
+
     formulario_histograma.imagen_intensidad.Assign(grafico.Picture.Graphic);
     formulario_histograma.crear_histograma(alto_img,ancho_img,matRGB);
     formulario_histograma.dibujar_histograma(formulario_histograma.grafico_histograma);
-
-    // actualiza los cambios
-    SetLength(cambios,contador_cambios);
-    maximo_cambios := contador_cambios;
-
-    cambios[contador_cambios].imagen.Assign(bitmap);
-    cambios[contador_cambios].alto := alto_img;
-    cambios[contador_cambios].ancho := ancho_img;
 
     barra_estado.Panels[0].Text:='Efecto Aplicado';
 end;
@@ -293,17 +302,21 @@ begin
     cpMatriztoBM(alto_img,ancho_img,matRGB,bitmap); // Carga la matriz al Bitmap
     cpMatriztoCanv(alto_img,ancho_img,matRGB,grafico);
 
+    if contador_cambios = 10 then begin
+        recorrer_cambios();
+        guardar_cambios;
+    end else if contador_cambios < cambios_reales then begin
+        cambios_reales := contador_cambios;
+        inc(contador_cambios);
+        guardar_cambios();
+    end else begin
+        inc(contador_cambios);
+	    guardar_cambios();
+    end;
+
     formulario_histograma.imagen_intensidad.Assign(grafico.Picture.Graphic);
     formulario_histograma.crear_histograma(alto_img,ancho_img,matRGB);
     formulario_histograma.dibujar_histograma(formulario_histograma.grafico_histograma);
-
-    // actualiza los cambios
-    SetLength(cambios,contador_cambios);
-    maximo_cambios := contador_cambios;
-
-    cambios[contador_cambios].imagen.Assign(bitmap);
-    cambios[contador_cambios].alto := alto_img;
-    cambios[contador_cambios].ancho := ancho_img;
 
     barra_estado.Panels[0].Text:='Efecto Aplicado';
 end;
@@ -317,17 +330,21 @@ begin
     cpMatriztoBM(alto_img,ancho_img,matRGB,bitmap); // Carga la matriz al Bitmap
     grafico.Picture.Assign(bitmap);
 
+    if contador_cambios = 10 then begin
+        recorrer_cambios();
+        guardar_cambios;
+    end else if contador_cambios < cambios_reales then begin
+        cambios_reales := contador_cambios;
+        inc(contador_cambios);
+        guardar_cambios();
+    end else begin
+        inc(contador_cambios);
+	    guardar_cambios();
+    end;
+
     formulario_histograma.imagen_intensidad.Assign(grafico.Picture.Graphic);
     formulario_histograma.crear_histograma(alto_img,ancho_img,matRGB);
     formulario_histograma.dibujar_histograma(formulario_histograma.grafico_histograma);
-
-    // actualiza los cambios
-    SetLength(cambios,contador_cambios);
-    maximo_cambios := contador_cambios;
-
-    cambios[contador_cambios].imagen.Assign(bitmap);
-    cambios[contador_cambios].alto := alto_img;
-    cambios[contador_cambios].ancho := ancho_img;
 
     barra_estado.Panels[0].Text:='Efecto Aplicado';
 end;
@@ -349,17 +366,21 @@ begin
         grafico.Picture.Assign(bitmap);
         //cpMatriztoCanv(alto_img,ancho_img,matRGB,grafico);
 
+        if contador_cambios = 10 then begin
+	        recorrer_cambios();
+    	    guardar_cambios;
+	    end else if contador_cambios < cambios_reales then begin
+    	    cambios_reales := contador_cambios;
+            inc(contador_cambios);
+	        guardar_cambios();
+	    end else begin
+        	inc(contador_cambios);
+		    guardar_cambios();
+    	end;
+
         formulario_histograma.imagen_intensidad.Assign(grafico.Picture.Graphic);
         formulario_histograma.crear_histograma(alto_img,ancho_img,matRGB);
         formulario_histograma.dibujar_histograma(formulario_histograma.grafico_histograma);
-
-        // actualiza los cambios
-    	SetLength(cambios,contador_cambios);
-    	maximo_cambios := contador_cambios;
-
-    	cambios[contador_cambios].imagen.Assign(bitmap);
-    	cambios[contador_cambios].alto := alto_img;
-	    cambios[contador_cambios].ancho := ancho_img;
 	end;
 end;
 
@@ -375,13 +396,17 @@ begin
     cpMatriztoBM(alto_img,ancho_img,matRGB,bitmap);
     grafico.Picture.Assign(bitmap);
 
-    // actualiza los cambios
-    SetLength(cambios,contador_cambios);
-    maximo_cambios := contador_cambios;
-
-    cambios[contador_cambios].imagen.Assign(bitmap);
-    cambios[contador_cambios].alto := alto_img;
-    cambios[contador_cambios].ancho := ancho_img;
+    if contador_cambios = 10 then begin
+        recorrer_cambios();
+        guardar_cambios;
+    end else if contador_cambios < cambios_reales then begin
+        cambios_reales := contador_cambios;
+        inc(contador_cambios);
+        guardar_cambios();
+    end else begin
+        inc(contador_cambios);
+	    guardar_cambios();
+    end;
 end;
 
 procedure Tformulario_principal.zoomoutClick(Sender: TObject);
@@ -397,13 +422,17 @@ begin
 	    cpMatriztoBM(alto_img,ancho_img,matRGB,bitmap);
 	    grafico.Picture.Assign(bitmap);
 
-        // actualiza los cambios
-    	SetLength(cambios,contador_cambios);
-    	maximo_cambios := contador_cambios;
-
-    	cambios[contador_cambios].imagen.Assign(bitmap);
-    	cambios[contador_cambios].alto := alto_img;
-    	cambios[contador_cambios].ancho := ancho_img;
+        if contador_cambios = 10 then begin
+    	    recorrer_cambios();
+	        guardar_cambios;
+    	end else if contador_cambios < cambios_reales then begin
+    	    cambios_reales := contador_cambios;
+            inc(contador_cambios);
+        	guardar_cambios();
+    	end else begin
+    	    inc(contador_cambios);
+	    	guardar_cambios();
+	    end;
     end;
 end;
 
@@ -422,13 +451,17 @@ begin
     cpMatriztoBM(alto_img,ancho_img,matRGB,bitmap);
     grafico.Picture.Assign(bitmap);
 
-    // actualiza los cambios
-    SetLength(cambios,contador_cambios);
-    maximo_cambios := contador_cambios;
-
-    cambios[contador_cambios].imagen.Assign(bitmap);
-    cambios[contador_cambios].alto := alto_img;
-    cambios[contador_cambios].ancho := ancho_img;
+    if contador_cambios = 10 then begin
+        recorrer_cambios();
+        guardar_cambios;
+    end else if contador_cambios < cambios_reales then begin
+        cambios_reales := contador_cambios;
+        inc(contador_cambios);
+        guardar_cambios();
+    end else begin
+        inc(contador_cambios);
+	    guardar_cambios();
+    end;
 end;
 
 procedure Tformulario_principal.girarderClick(Sender: TObject);
@@ -446,56 +479,55 @@ begin
     cpMatriztoBM(alto_img,ancho_img,matRGB,bitmap);
     grafico.Picture.Assign(bitmap);
 
-    // actualiza los cambios
-    SetLength(cambios,contador_cambios);
-    maximo_cambios := contador_cambios;
-
-    cambios[contador_cambios].imagen.Assign(bitmap);
-    cambios[contador_cambios].alto := alto_img;
-    cambios[contador_cambios].ancho := ancho_img;
-end;
-
-procedure Tformulario_principal.graficoMouseMove(Sender: TObject;
-    Shift: TShiftState; X, Y: Integer);
-begin
-    barra_estado.Panels[1].Text:='RGB = ('+IntToStr(matRGB[X,Y,2])+','+IntToStr(matRGB[X,Y,1])+','+IntToStr(matRGB[X,Y,0])+')';
+    if contador_cambios = 10 then begin
+        recorrer_cambios();
+    	guardar_cambios;
+    end else if contador_cambios < cambios_reales then begin
+        cambios_reales := contador_cambios;
+        inc(contador_cambios);
+        guardar_cambios();
+    end else begin
+        inc(contador_cambios);
+		guardar_cambios();
+    end;
 end;
 
 procedure Tformulario_principal.menu_edicionClick(Sender: TObject);
 begin
+
     if contador_cambios = maximo_cambios then opcion_rehacer.Enabled:=false;
 
-	if contador_cambios < 2 then opcion_deshacer.Enabled := false;
+   	if contador_cambios = cambios_reales then opcion_rehacer.Enabled:=false;
+
+    if contador_cambios < cambios_reales then begin
+        opcion_rehacer.Enabled:=true;
+    end else begin
+        opcion_rehacer.Enabled:=false;
+    end;
+
+	if cambios_reales <= 1  then begin
+        opcion_deshacer.Enabled := false;
+    end else begin
+        opcion_deshacer.Enabled := true;
+    end;
+
+    if contador_cambios < 2 then begin
+        opcion_deshacer.Enabled:=false;
+    end;
 end;
 
 procedure Tformulario_principal.opcion_deshacerClick(Sender: TObject);
 begin
-	contador_cambios := contador_cambios-1;
-    alto_img  := cambios[contador_cambios].alto;
-    ancho_img := cambios[contador_cambios].ancho;
-
-    grafico.Height := alto_img;
-    grafico.Width  := ancho_img;
-
-    grafico.Picture.Assign(cambios[contador_cambios].imagen);
-    bitmap.Assign(cambios[contador_cambios].imagen);
-	cpBMtoMatriz(alto_img,ancho_img,matRGB,bitmap);
+	dec(contador_cambios,1);
+	tomar_cambios();
 end;
 
 procedure Tformulario_principal.opcion_rehacerClick(Sender: TObject);
 begin
     if contador_cambios < maximo_cambios then begin
-
-	contador_cambios := contador_cambios+1;
-    alto_img  := cambios[contador_cambios].alto;
-    ancho_img := cambios[contador_cambios].ancho;
-
-    grafico.Height := alto_img;
-    grafico.Width  := ancho_img;
-
-    grafico.Picture.Assign(cambios[contador_cambios].imagen);
-    bitmap.Assign(cambios[contador_cambios].imagen);
-	cpBMtoMatriz(alto_img,ancho_img,matRGB,bitmap);
+    	inc(contador_cambios);
+        tomar_cambios();
+    end;
 end;
 
 procedure Tformulario_principal.opcion_segmentacionClick(Sender: TObject);
@@ -514,17 +546,21 @@ begin
         cpBmtoMatriz(alto_img,ancho_img,matRGB,bitmap);
         grafico.Picture.Assign(bitmap);
 
+        if contador_cambios = 10 then begin
+            recorrer_cambios();
+            guardar_cambios;
+        end else if contador_cambios < cambios_reales then begin
+    	    cambios_reales := contador_cambios;
+            inc(contador_cambios);
+	        guardar_cambios();
+	    end else begin
+            inc(contador_cambios);
+	        guardar_cambios();
+    	end;
+
         formulario_histograma.imagen_intensidad.Assign(grafico.Picture.Graphic);
         formulario_histograma.crear_histograma(alto_img,ancho_img,matRGB);
         formulario_histograma.dibujar_histograma(formulario_histograma.grafico_histograma);
-
-        // actualiza los cambios
-	    SetLength(cambios,contador_cambios);
-    	maximo_cambios := contador_cambios;
-
-	    cambios[contador_cambios].imagen.Assign(bitmap);
-	    cambios[contador_cambios].alto := alto_img;
-	    cambios[contador_cambios].ancho := ancho_img;
 	end;
 end;
 
@@ -542,17 +578,21 @@ begin
         cpBmtoMatriz(alto_img,ancho_img,matRGB,bitmap);
         grafico.Picture.Assign(bitmap);
 
+        if contador_cambios = 10 then begin
+            recorrer_cambios();
+            guardar_cambios;
+        end else if contador_cambios < cambios_reales then begin
+	        cambios_reales := contador_cambios;
+            inc(contador_cambios);
+	        guardar_cambios();
+	    end else begin
+            inc(contador_cambios);
+	        guardar_cambios();
+    	end;
+
         formulario_histograma.imagen_intensidad.Assign(grafico.Picture.Graphic);
         formulario_histograma.crear_histograma(alto_img,ancho_img,matRGB);
         formulario_histograma.dibujar_histograma(formulario_histograma.grafico_histograma);
-
-        // actualiza los cambios
-	    SetLength(cambios,contador_cambios);
-	    maximo_cambios := contador_cambios;
-
-	    cambios[contador_cambios].imagen.Assign(bitmap);
-	    cambios[contador_cambios].alto := alto_img;
-	    cambios[contador_cambios].ancho := ancho_img;
     end;
     barra_estado.Panels[0].Text:='Efecto Aplicado';
 end;
@@ -572,17 +612,22 @@ begin
         cpBMtoMatriz(alto_img,ancho_img,matRGB,bitmap);
         grafico.Picture.Assign(bitmap);
 
+        if contador_cambios = 10 then begin
+            recorrer_cambios();
+            guardar_cambios;
+        end else if contador_cambios < cambios_reales then begin
+        	cambios_reales := contador_cambios;
+            inc(contador_cambios);
+    	    guardar_cambios();
+	    end else begin
+            inc(contador_cambios);
+	        guardar_cambios();
+    	end;
+
         formulario_histograma.imagen_intensidad.Assign(grafico.Picture.Graphic);
         formulario_histograma.crear_histograma(alto_img,ancho_img,matRGB);
         formulario_histograma.dibujar_histograma(formulario_histograma.grafico_histograma);
 
-        // actualiza los cambios
-    	SetLength(cambios,contador_cambios);
-	    maximo_cambios := contador_cambios;
-
-	    cambios[contador_cambios].imagen.Assign(bitmap);
-	    cambios[contador_cambios].alto := alto_img;
-	    cambios[contador_cambios].ancho := ancho_img;
     end;
 
     barra_estado.Panels[0].Text:='Efecto Aplicado';
@@ -597,6 +642,73 @@ procedure Tformulario_principal.opcion_guardar_comoClick(Sender: TObject);
 begin
 	if cuadro_salvar.Execute then begin
 		bitmap.SaveToFile(cuadro_salvar.FileName);
+    end;
+end;
+
+procedure Tformulario_principal.guardar_cambios();
+begin
+    // guarda los cambios
+    if cambios_reales < 10 then inc(cambios_reales);
+	ShowMessage('Contador Cambio: '+IntToStr(contador_cambios));
+    ShowMessage('Cambios Reales: '+IntToStr(cambios_reales));
+    SetLength(cambios,contador_cambios);
+    cambios[contador_cambios-1].alto  := alto_img;
+    cambios[contador_cambios-1].ancho := ancho_img;
+
+    SetLength(cambios[contador_cambios-1].matriz,cambios[contador_cambios-1].alto,cambios[contador_cambios-1].ancho,3);
+    cpBMtoMatriz(cambios[contador_cambios-1].alto,cambios[contador_cambios-1].ancho,cambios[contador_cambios-1].matriz,bitmap);
+end;
+
+procedure Tformulario_principal.tomar_cambios();
+begin
+    // actualiza los cambios
+    ShowMessage('Contador Cambio: '+IntToStr(contador_cambios));
+    ShowMessage('Cambios Reales: '+IntToStr(cambios_reales));
+    //SetLength(cambios,contador_cambios);
+    ShowMessage('Alto previo: '+IntToStr(alto_img));
+    ShowMessage('Ancho previo: '+IntToStr(ancho_img));
+
+    alto_img  := cambios[contador_cambios-1].alto;
+    ancho_img := cambios[contador_cambios-1].ancho;
+
+    ShowMessage('Alto NUEVO: '+IntToStr(alto_img));
+    ShowMessage('Ancho NUEVO: '+IntToStr(ancho_img));
+
+    grafico.Width  := ancho_img;
+    grafico.Height := alto_img;
+
+    bitmap.Height := alto_img;
+    bitmap.Width  := ancho_img;
+   	cpMatriztoBM(cambios[contador_cambios-1].alto,cambios[contador_cambios-1].ancho,cambios[contador_cambios-1].matriz,bitmap);
+
+    SetLength(matRGB,cambios[contador_cambios-1].alto,cambios[contador_cambios-1].ancho,3);
+    cpBMtoMatriz(cambios[contador_cambios-1].alto,cambios[contador_cambios-1].ancho,matRGB,bitmap);
+
+    grafico.Picture.Assign(bitmap);
+
+    formulario_histograma.imagen_intensidad.Assign(grafico.Picture.Graphic);
+    formulario_histograma.crear_histograma(alto_img,ancho_img,matRGB);
+    formulario_histograma.dibujar_histograma(formulario_histograma.grafico_histograma);
+end;
+
+procedure Tformulario_principal.recorrer_cambios();
+var
+    Q,i,j,k : Integer;
+begin
+	for Q:=0 to 8 do begin
+		cambios[Q].alto  := cambios[Q+1].alto;
+        cambios[Q].ancho := cambios[Q+1].ancho;
+
+        SetLength(cambios[Q].matriz,cambios[Q+1].alto,cambios[Q+1].ancho,3);
+
+        for i:=0 to cambios[Q+1].alto-1 do begin
+            for j:=0 to cambios[Q+1].ancho-1 do begin
+                for k:=0 to 2 do begin
+                    cambios[Q].matriz[i,j,k] := cambios[Q+1].matriz[i,j,k];
+                end;
+            end;
+        end;
+
     end;
 end;
 

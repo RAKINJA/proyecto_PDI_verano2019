@@ -83,6 +83,7 @@
         <Filename Value="ventana_segmentacion.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="formulario_segmentacion"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit8>
     </Units>
