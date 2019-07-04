@@ -1,11 +1,11 @@
 object formulario_umbral: Tformulario_umbral
-  Left = -539
+  Left = 619
   Height = 280
-  Top = -247
+  Top = 143
   Width = 526
   Caption = 'Umbral'
-  ClientHeight = 280
-  ClientWidth = 526
+  ClientHeight = 0
+  ClientWidth = 0
   OnCreate = FormCreate
   OnShow = FormShow
   LCLVersion = '2.0.2.0'
@@ -61,7 +61,7 @@ object formulario_umbral: Tformulario_umbral
     Left = 176
     Height = 15
     Top = 16
-    Width = 103
+    Width = 104
     Caption = 'VALOR DE UMBRAL'
     ParentColor = False
   end

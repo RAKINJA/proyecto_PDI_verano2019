@@ -31,14 +31,14 @@ type
         procedure FormCreate(Sender: TObject);
         procedure FormShow(Sender: TObject);
     private
-
+        procedure filtro_correcion_gamma(matriz: matrizRGB);
 
     public
         // variables
         imagen_original : TBitmap;
         matriz_gamma : matrizRGB;
 
-        procedure filtro_correcion_gamma(matriz: matrizRGB);
+
     end;
 
 var
@@ -152,9 +152,7 @@ begin
         for j:= 0 to ancho-1 do begin
             for k:=0 to 2 do begin
                 frag := 255*power(matriz[i,j,k]/255,gamma);
-                //ShowMessage('Flotante '+FloatToStr(frag));
                 matriz_gamma[i,j,k] := byte(trunc(frag));
-				//ShowMessage('Byte '+FloatToStr(matriz[i,j,k]));
 			end;
 		end;
 	end;

@@ -1,7 +1,7 @@
 object formulario_contraste: Tformulario_contraste
-  Left = -548
+  Left = 841
   Height = 312
-  Top = 102
+  Top = 176
   Width = 450
   Caption = 'Contraste'
   ClientHeight = 312
@@ -60,7 +60,7 @@ object formulario_contraste: Tformulario_contraste
     Left = 136
     Height = 15
     Top = 16
-    Width = 121
+    Width = 124
     Caption = 'VALOR DE CONTRASTE'
     ParentColor = False
   end

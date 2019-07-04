@@ -73,64 +73,6 @@ end;
 
 procedure Tformulario_contraste.apertura_contrasteChange(Sender: TObject);
 begin
-
-    {case apertura_contraste.Position of
-    	1: begin
-            contraste := 0;
-    		valor_contraste.Caption := FloatToStr(contraste);
-        end;
-
-        2: begin
-            contraste := 1/512;
-            valor_contraste.Caption := FloatToStr(contraste);
-        end;
-
-        3: begin
-            contraste := 1/256;
-            valor_contraste.Caption := FloatToStr(contraste);
-        end;
-
-        4: begin
-            contraste := 1/128;
-            valor_contraste.Caption:= FloatToStr(contraste);
-        end;
-
-        5: begin
-            contraste := 1/64;
-            valor_contraste.Caption:= FloatToStr(contraste);
-        end;
-
-        6: begin
-            contraste := 1/32;
-            valor_contraste.Caption:= FloatToStr(contraste);
-        end;
-
-        7: begin
-            contraste := 1/16;
-            valor_contraste.Caption:= FloatToStr(contraste);
-        end;
-
-        8: begin
-            contraste := 1/8;
-            valor_contraste.Caption:= FloatToStr(contraste);
-        end;
-
-        9 : begin
-            contraste := 1/4;
-            valor_contraste.Caption:= FloatToStr(contraste);
-        end;
-
-        10: begin
-            contraste := 1/2;
-            valor_contraste.Caption := FloatToStr(contraste);
-        end;
-
-        else begin
-            contraste := apertura_contraste.Position-10;
-            valor_contraste.Caption:= FloatToStr(contraste);
-        end;
-    end;}
-
     contraste := apertura_contraste.Position;
     valor_contraste.Caption:= FloatToStr(contraste);
 end;
@@ -141,6 +83,7 @@ begin
     estado_contraste.Panels[0].Text:='Aplicando efecto, por favor espere...';
 
 	grafico_contraste.Picture.Assign(imagen_original);
+
     cpBMtoMatriz(alto,ancho,matriz_contraste,imagen_original);
     filtro_contraste(matriz_contraste);
     cpMatriztoCanv(alto,ancho,matriz_contraste,grafico_contraste);

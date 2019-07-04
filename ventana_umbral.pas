@@ -88,6 +88,10 @@ begin
     cpCanvtoMatriz(alto_img,ancho_img,matriz_umbral,grafico_umbral);  // Carga el contenido del Canvas a la Matriz
     imagen_original.Assign(grafico_umbral.Picture.Graphic);			  // Asigna la imagen original en el bitmap auxiliar
 
+    cpBMtoMatriz(alto_img,ancho_img,matriz_umbral,imagen_original);
+    filtro_umbral(alto_img,ancho_img,matriz_umbral);
+    cpMatriztoCanv(alto_img,ancho_img,matriz_umbral,grafico_umbral);
+
 end;
 
 procedure Tformulario_umbral.apertura_umbralChange(Sender: TObject);
@@ -105,7 +109,7 @@ begin
     filtro_umbral(alto_img,ancho_img,matriz_umbral);
     cpMatriztoCanv(alto_img,ancho_img,matriz_umbral,grafico_umbral);
 
-    estado_umbral.Panels[0].Text:='Aplicado...';
+    estado_umbral.Panels[0].Text:='Listo...';
 end;
 
 procedure Tformulario_umbral.boton_color1ColorChanged(Sender: TObject);

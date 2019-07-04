@@ -8,7 +8,7 @@ uses
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
   Forms, codigo_pdi_proyecto_vha, metodos_proyecto_pid_vha, ventana_histograma,
-  funciones_control, ventana_umbral, ventana_gamma, ventana_contraste
+  funciones_control, ventana_umbral, ventana_gamma, ventana_contraste, ventana_segmentacion
   { you can add units after this };
 
 {$R *.res}
@@ -23,6 +23,7 @@ begin
     Application.CreateForm(Tformulario_umbral, formulario_umbral);
     Application.CreateForm(Tformulario_gamma, formulario_gamma);
     Application.CreateForm(Tformulario_contraste, formulario_contraste);
+	  Application.CreateForm(Tformulario_segmentacion, formulario_segmentacion);
   Application.Run;
 end.
 

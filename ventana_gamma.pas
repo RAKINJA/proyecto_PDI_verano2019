@@ -31,14 +31,14 @@ type
         procedure FormCreate(Sender: TObject);
         procedure FormShow(Sender: TObject);
     private
-
+        procedure filtro_correcion_gamma(matriz: matrizRGB);
 
     public
         // variables
         imagen_original : TBitmap;
         matriz_gamma : matrizRGB;
 
-        procedure filtro_correcion_gamma(matriz: matrizRGB);
+
     end;
 
 var

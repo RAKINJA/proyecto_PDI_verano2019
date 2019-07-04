@@ -31,7 +31,7 @@
         <PackageName Value="LCL"/>
       </Item1>
     </RequiredPackages>
-    <Units Count="8">
+    <Units Count="9">
       <Unit0>
         <Filename Value="pdi_proyecto_vha.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -79,6 +79,13 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit7>
+      <Unit8>
+        <Filename Value="ventana_segmentacion.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="formulario_segmentacion"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit8>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

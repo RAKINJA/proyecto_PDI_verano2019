@@ -1,7 +1,7 @@
 object formulario_gamma: Tformulario_gamma
-  Left = 398
+  Left = 2242
   Height = 276
-  Top = 325
+  Top = 644
   Width = 430
   Caption = 'Correccion Gamma'
   ClientHeight = 276

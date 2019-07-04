@@ -1,7 +1,7 @@
 object formulario_histograma: Tformulario_histograma
-  Left = 582
+  Left = 1957
   Height = 238
-  Top = 297
+  Top = 318
   Width = 309
   Caption = 'Histograma'
   ClientHeight = 238
@@ -19,7 +19,7 @@ object formulario_histograma: Tformulario_histograma
     Left = 80
     Height = 15
     Top = 8
-    Width = 156
+    Width = 158
     Caption = 'HISTOGRAMA DE LA IMAGEN'
     ParentColor = False
   end

@@ -43,7 +43,7 @@ type
 		// PROCEDIMIENTOS
         procedure crear_histograma(alto,ancho : Integer; matriz: matrizRGB);
         procedure histograma_cero();
-        procedure inicializar_histograma(alto,ancho : Integer; matriz: matrizRGB; var hs:histogramaRGB);
+        procedure inicializar_histograma(alto,ancho : Integer; matriz: matrizRGB);
         procedure inicializar_histograma_i(alto,ancho : Integer; matriz: matrizRGB);
         procedure asignar_alturas();
         procedure asignar_alturas_i();
@@ -134,12 +134,13 @@ end;
 procedure Tformulario_histograma.crear_histograma(alto,ancho : Integer; matriz: matrizRGB);
 begin
     histograma_cero();
-    inicializar_histograma(alto,ancho,matriz,matriz_histograma);
+    inicializar_histograma(alto,ancho,matriz);
     asignar_alturas();
 
     // crear la imagen a escala de grises
     SetLength(matriz_intensidad,imagen_intensidad.Height,imagen_intensidad.Width,3);
     cpBMtoMatriz(imagen_intensidad.Height,imagen_intensidad.Width,matriz_intensidad,imagen_intensidad);
+
     filtro_grises_global(imagen_intensidad.Height,imagen_intensidad.Width,matriz_intensidad);
     inicializar_histograma_i(alto,ancho,matriz_intensidad);
 	asignar_alturas_i();
@@ -162,31 +163,27 @@ begin
     end;
 end;
 
-procedure Tformulario_histograma.inicializar_histograma(alto,ancho : Integer; matriz: matrizRGB; var hs:histogramaRGB);
+procedure Tformulario_histograma.inicializar_histograma(alto,ancho : Integer; matriz: matrizRGB);
 var
     i,j,k,l : Integer;
 begin
-    for i:=0 to 2 do begin
+    {for i:=0 to 2 do begin
         for j:=0 to 255 do begin
             matriz_histograma[i,j] := 0;
             altura[i,j] := 0;
         end;
-    end;
+    end;}
 
 	for k:=0 to 2 do begin
-
             for i:=0 to alto-1 do begin
                 for j:=0 to ancho-1 do begin
                     l := matriz[i,j,k];
-
                     matriz_histograma[k,l] := matriz_histograma[k,l]+1;
 
                     if matriz_histograma[k,l] > maximo then maximo := matriz_histograma[k,l];
 
                 end; // end for j
             end; // end for i
-
-        //end // end of j
     end; // end for i
 
     maximo_r := matriz_histograma[2,0];
@@ -198,13 +195,6 @@ begin
         if maximo_g < matriz_histograma[1,i] then maximo_g := matriz_histograma[1,i];
         if maximo_r < matriz_histograma[2,i] then maximo_r := matriz_histograma[2,i];
 	end;
-
-
-    ShowMessage('Maximo R '+IntToStr(maximo_r));
-    ShowMessage('Maximo G '+IntToStr(maximo_g));
-    ShowMessage('Maximo B '+IntToStr(maximo_b));
-
-    //ShowMessage('El valor maximo es : '+IntToStr(maximo));
 end;
 
 procedure Tformulario_histograma.asignar_alturas();
@@ -216,7 +206,6 @@ begin
     maximo_hs := 0;
 	// proceso de calcular altura para cada punto en el arreglo
 	for i:= 0 to 2 do begin
-
         if i = 2 then maximo_hs := maximo_r;
         if i = 1 then maximo_hs := maximo_g;
         if i = 0 then maximo_hs := maximo_b;
@@ -232,33 +221,24 @@ procedure Tformulario_histograma.inicializar_histograma_i(alto,ancho : Integer; 
 var
     i,j,l : Integer;
 begin
-    ShowMessage('Alto  := '+IntToStr(alto));
-    ShowMessage('Ancho := '+IntToStr(ancho));
-
 	for i:=0 to alto-1 do begin
     	for j:=0 to ancho-1 do begin
-            ShowMessage('Alto := '+IntToStr(matriz[i,j,0]));
         	l := matriz[i,j,0];
            	intensidad[0,l] :=intensidad[0,l]+1;
-
             if (intensidad[0,l] > maximo_intensidad) then maximo_intensidad := intensidad[0,l];
         end;
     end;
-
-    //ShowMessage('El valor maximo es : '+IntToStr(maximo_intensidad));
 end;
 
 procedure Tformulario_histograma.asignar_alturas_i();
 var
-    j,k : Integer;
+    j : Integer;
     frag : Double;
 begin
 	// proceso de calcular altura para cada punto en el arreglo
     for j:= 0 to 255 do begin
         frag := 1-(intensidad[0,j] / maximo);
-        //ShowMessage('Frag  ['+IntToStr(1)+' | '+IntToStr(j)+'] = '+FloatToStr(frag));
     	intensidad[1,j] := trunc(140*(frag));
-
 	end;
 end;
 

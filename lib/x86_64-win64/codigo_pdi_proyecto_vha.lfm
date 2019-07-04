@@ -1,10 +1,10 @@
 object formulario_principal: Tformulario_principal
-  Left = 511
+  Left = 2760
   Height = 497
-  Top = 22
+  Top = 177
   Width = 800
   BorderStyle = bsSingle
-  Caption = 'formulario_principal'
+  Caption = 'Proyecto PDI - Verano 2019 - VHA'
   ClientHeight = 477
   ClientWidth = 800
   Color = 4276545
@@ -108,8 +108,10 @@ object formulario_principal: Tformulario_principal
     end
     object menu_edicion: TMenuItem
       Caption = 'Edición'
+      OnClick = menu_edicionClick
       object opcion_deshacer: TMenuItem
         Caption = 'Deshacer'
+        OnClick = opcion_deshacerClick
       end
       object opcion_rehacer: TMenuItem
         Caption = 'Rehacer'
@@ -155,6 +157,10 @@ object formulario_principal: Tformulario_principal
       object opcion_gamma: TMenuItem
         Caption = 'Correcion Gamma'
         OnClick = opcion_gammaClick
+      end
+      object opcion_segmentacion: TMenuItem
+        Caption = 'Segmentacion de Gris'
+        OnClick = opcion_segmentacionClick
       end
     end
     object menu_ventana: TMenuItem
